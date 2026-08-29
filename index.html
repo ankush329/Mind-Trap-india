@@ -3,18 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - Study & Unlimited Puzzles</title>
+<title>Mind Master India - All Subjects Study App</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#111827,#312e81);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
-.container{width:100%;max-width:520px;padding:18px}
-.card{background:white;color:#172033;border-radius:24px;padding:24px;box-shadow:0 15px 35px #0006;transition:transform 0.2s}
-h1{margin:0 0 5px;font-size:26px;text-align:center;color:#312e81}
-.subtitle{color:#64748b;font-size:13px;text-align:center;margin-bottom:20px}
-.btn{width:100%;padding:14px;border:0;border-radius:14px;font-size:17px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-align:center;transition:transform 0.1s}
-.btn:active{transform:scale(0.97)}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
+.container{width:100%;max-width:520px;padding:16px}
+.card{background:#ffffff;color:#1e293b;border-radius:24px;padding:22px;box-shadow:0 15px 35px #0008}
+h1{margin:0 0 5px;font-size:24px;text-align:center;color:#312e81}
+.subtitle{color:#64748b;font-size:13px;text-align:center;margin-bottom:18px}
+
+/* Subject Grid System */
+.subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
+.sub-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:15px;text-align:center;cursor:pointer;transition:0.2s}
+.sub-card:active{transform:scale(0.96)}
+.sub-card span{font-size:26px;display:block;margin-bottom:6px}
+.sub-card h3{margin:0;font-size:15px;color:#1e293b}
+
+.btn{width:100%;padding:14px;border:0;border-radius:14px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px;text-align:center}
 .btn-primary{background:#4f46e5;color:white}
-.btn-secondary{background:#facc15;color:#111827}
+.btn-live{background:linear-gradient(90deg,#ef4444,#f59e0b);color:white}
+
 .screen{display:none}
 .screen.active{display:block}
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;color:white}
@@ -22,18 +30,17 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .progress{height:8px;background:#475569;border-radius:10px;overflow:hidden;margin-bottom:12px}
 .progress-bar{height:100%;width:10%;background:#22c55e;transition:.3s}
 .info{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:bold;font-size:14px;color:#cbd5e1}
-.category{display:inline-block;background:#e0e7ff;color:#3730a3;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-.question{font-size:19px;line-height:1.4;margin:18px 0}
+.category-badge{display:inline-block;background:#e0e7ff;color:#3730a3;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.question{font-size:19px;line-height:1.4;margin:18px 0;color:#1e293b}
 .options{display:grid;gap:10px}
-.option{padding:14px;border:2px solid #e5e7eb;border-radius:14px;background:#fff;font-size:16px;text-align:left;cursor:pointer;transition:transform 0.1s}
-.option:active{transform:scale(0.98)}
+.option{padding:14px;border:2px solid #e2e8f0;border-radius:14px;background:#fff;color:#1e293b;font-size:16px;text-align:left;cursor:pointer}
 .correct{background:#dcfce7 !important;border-color:#22c55e !important}
 .wrong{background:#fee2e2 !important;border-color:#ef4444 !important}
 .buttons{display:flex;gap:10px;margin-top:16px}
-.hint{flex:1;padding:12px;border:0;border-radius:12px;background:#facc15;font-weight:bold;cursor:pointer}
+.hint{flex:1;padding:12px;border:0;border-radius:12px;background:#facc15;color:#111827;font-weight:bold;cursor:pointer}
 .next{flex:1;padding:12px;border:0;border-radius:12px;background:#4f46e5;color:white;font-weight:bold;cursor:pointer;display:none}
 .message{text-align:center;min-height:22px;margin-top:12px;font-weight:bold;font-size:14px}
-.footer{text-align:center;color:#cbd5e1;margin-top:16px;font-size:13px}
+.footer{text-align:center;color:#94a3b8;margin-top:16px;font-size:13px}
 
 .shake { animation: shake 0.4s ease; }
 @keyframes shake {
@@ -45,21 +52,56 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 </head>
 <body>
 
-<div class="container" id="mainContainer">
+<div class="container">
 
-  <!-- 1. HOME SCREEN -->
+  <!-- 1. HOME SCREEN WITH ALL SUBJECTS -->
   <div class="card screen active" id="homeScreen">
-    <h1>🧠 Mind Master India</h1>
-    <div class="subtitle">Study, GK & Unlimited Brain Puzzles</div>
-    <button class="btn btn-primary" onclick="startGame()">▶ खेल शुरू करें (Unlimited Play)</button>
-    <button class="btn btn-secondary" onclick="startDaily()">🔥 डेली चैलेंज</button>
+    <h1>📚 Mind Master India</h1>
+    <div class="subtitle">Complete Study & Practice App for All Subjects</div>
+    
+    <div class="subject-grid">
+      <div class="sub-card" onclick="selectSubject('GK & GS')">
+        <span>📖</span>
+        <h3>सामान्य ज्ञान (GK)</h3>
+      </div>
+      <div class="sub-card" onclick="selectSubject('Mathematics')">
+        <span>📐</span>
+        <h3>गणित (Maths)</h3>
+      </div>
+      <div class="sub-card" onclick="selectSubject('Reasoning')">
+        <span>🧠</span>
+        <h3>तर्कशक्ति (Reasoning)</h3>
+      </div>
+      <div class="sub-card" onclick="selectSubject('Science')">
+        <span>🔬</span>
+        <h3>विज्ञान (Science)</h3>
+      </div>
+      <div class="sub-card" onclick="selectSubject('History')">
+        <span>🏛️</span>
+        <h3>इतिहास (History)</h3>
+      </div>
+      <div class="sub-card" onclick="selectSubject('Geography')">
+        <span>🌍</span>
+        <h3>भूगोल (Geography)</h3>
+      </div>
+    </div>
+
+    <button class="btn btn-live" onclick="openLiveClass()">🔴 Live Class / Mock Test</button>
+    <button class="btn btn-primary" onclick="selectSubject('All Subjects')">🚀 सभी विषय एक साथ (Mix Quiz)</button>
   </div>
 
-  <!-- 2. GAME SCREEN -->
+  <!-- 2. LIVE CLASS / NOTIFICATION SCREEN -->
+  <div class="card screen" id="liveScreen" style="text-align:center;">
+    <h2>🔴 Live Classes & Notes</h2>
+    <p style="color:#64748b;margin:15px 0;">लाइव क्लासेज और पीडीएफ नोट्स का फीचर जल्द ही अपडेट किया जा रहा है। तब तक आप सभी विषयों के मॉक टेस्ट प्रैक्टिस कर सकते हैं!</p>
+    <button class="btn btn-primary" onclick="goToHome()">🔙 होम पेज पर जाएं</button>
+  </div>
+
+  <!-- 3. QUIZ / STUDY SCREEN -->
   <div class="screen" id="gameScreen">
     <header>
       <div>
-        <h2 style="margin:0;font-size:18px;color:white;">Mind Master India</h2>
+        <h2 style="margin:0;font-size:18px;color:white;" id="headerTitle">Subject Quiz</h2>
       </div>
       <div class="coins">🪙 <span id="coins">15</span></div>
     </header>
@@ -75,7 +117,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
 
     <div class="card" id="quizCard">
-      <div class="category" id="category">📚 General Knowledge</div>
+      <div class="category-badge" id="category">Subject</div>
       <div class="question" id="question">Loading...</div>
       <div class="options" id="options"></div>
       <div class="buttons">
@@ -86,16 +128,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
   </div>
 
-  <!-- 3. GAME OVER SCREEN (अगर कभी लाइफ खत्म हों) -->
-  <div class="card screen" id="gameOverScreen" style="text-align:center;">
-    <h2>🏆 शानदार प्रदर्शन!</h2>
-    <p>आपने बेहतरीन अभ्यास किया है।</p>
-    <h3>⭐ कुल स्कोर: <span id="finalScore">0</span></h3>
-    <h3>🪙 कुल सिक्के: <span id="finalCoins">0</span></h3>
-    <button class="btn btn-primary" onclick="goToHome()" style="margin-top:15px;">🏠 होम पेज पर जाएं</button>
-  </div>
-
-  <div class="footer">Mind Master India • Study Edition</div>
+  <div class="footer">Mind Master India • Education Hub</div>
 </div>
 
 <script>
@@ -129,17 +162,38 @@ function playSound(type) {
   }
 }
 
-// स्टडी और लॉजिक आधारित स्टडी बैंक
-const studyBank = [
-  { cat: "📚 सामान्य ज्ञान (GK)", q: "भारत की राजधानी क्या है?", opts: ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"], ans: 1, hint: "यह उत्तर भारत का मुख्य प्रशासनिक केंद्र है।" },
-  { cat: "📚 सामान्य ज्ञान (GK)", q: "भारत के प्रथम राष्ट्रपति कौन थे?", opts: ["डॉ. राजेन्द्र प्रसाद", "पं. जवाहरलाल नेहरू", "महात्मा गांधी", "सरदार पटेल"], ans: 0, hint: "इनका संबंध बिहार से था।" },
-  { cat: "📐 गणित (Maths)", q: "15 का 20% कितना होता है?", opts: ["2", "3", "5", "10"], ans: 1, hint: "15 को 20 से गुणा करके 100 से भाग दें।" },
-  { cat: "📐 गणित (Maths)", q: "अगर एक वर्ग की भुजा 5 सेमी है, तो उसका क्षेत्रफल क्या होगा?", opts: ["10 वर्ग सेमी", "20 वर्ग सेमी", "25 वर्ग सेमी", "15 वर्ग सेमी"], ans: 2, hint: "क्षेत्रफल = भुजा × भुजा" },
-  { cat: "🧠 रीजनिंग (Reasoning)", q: "ACE, GGI के बाद अगला क्रम क्या होगा? (मान लीजिए पैटर्न अनुसार)", opts: ["IKM", "MOQ", "ACE", "BDF"], ans: 0, hint: "वर्णमाला (Alphabet) में अक्षरों का गैپ देखें।" },
-  { cat: "🔬 विज्ञान (Science)", q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", opts: ["फीमर (जांघ की)", "रेडियस", "टीबिया", "स्कल"], ans: 0, hint: "यह पैर की हड्डी होती है।" },
-  { cat: "🔬 विज्ञान (Science)", q: "प्रकाश वर्ष (Light Year) किसकी इकाई है?", opts: ["समय", "दूरी", "प्रकाश की तीव्रता", "गति"], ans: 1, hint: "यह अंतरिक्ष में लंबी दूरियां मापने के काम आती है।" }
-];
+// सभी विषयों का डेटाबेस
+const subjectDatabase = {
+  "GK & GS": [
+    { q: "भारत की राजधानी क्या है?", opts: ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"], ans: 1, hint: "यह उत्तर भारत का मुख्य प्रशासनिक केंद्र है।" },
+    { q: "भारत के प्रथम राष्ट्रपति कौन थे?", opts: ["डॉ. राजेन्द्र प्रसाद", "पं. जवाहरलाल नेहरू", "महात्मा गांधी", "सरदार पटेल"], ans: 0, hint: "इनका संबंध बिहार से था।" },
+    { q: "भारत का राष्ट्रीय खेल कौन सा है?", opts: ["क्रिकेट", "हॉकी", "कबड्डी", "फुटबॉल"], ans: 1, hint: "यह स्टिक और बॉल से खेला जाता है।" }
+  ],
+  "Mathematics": [
+    { q: "15 का 20% कितना होता है?", opts: ["2", "3", "5", "10"], ans: 1, hint: "15 को 20 से गुणा करके 100 से भाग दें।" },
+    { q: "अगर एक वर्ग की भुजा 5 सेमी है, तो क्षेत्रफल क्या होगा?", opts: ["10 वर्ग सेमी", "20 वर्ग सेमी", "25 वर्ग सेमी", "15 वर्ग सेमी"], ans: 2, hint: "क्षेत्रफल = भुजा × भुजा" },
+    { q: "9 का वर्ग (Square) कितना होता है?", opts: ["18", "81", "72", "99"], ans: 1, hint: "9 को 9 से गुणा करें।" }
+  ],
+  "Reasoning": [
+    { q: "ACE, GGI के बाद अगला क्रम क्या होगा?", opts: ["IKM", "MOQ", "ACE", "BDF"], ans: 0, hint: "वर्णमाला में अक्षरों का गैپ देखें।" },
+    { q: "यदि A = 1, CAT = 24 हो, तो DOG = ?", opts: ["26", "28", "30", "32"], ans: 0, hint: "अक्षरों की नंबर वैल्यू को जोड़ें (D=4, O=15, G=7)।" }
+  ],
+  "Science": [
+    { q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", opts: ["फीमर (जांघ की)", "रेडियस", "टीबिया", "स्कल"], ans: 0, hint: "यह पैर की हड्डी होती है।" },
+    { q: "प्रकाश वर्ष किसकी इकाई है?", opts: ["समय", "दूरी", "प्रकाश की तीव्रता", "गति"], ans: 1, hint: "यह अंतरिक्ष में लंबी दूरियां मापने के काम आती है।" },
+    { q: "सूर्य के प्रकाश से कौन सा विटामिन मिलता है?", opts: ["विटामिन A", "विटामिन B", "विटामिन C", "विटामिन D"], ans: 3, hint: "यह हड्डियों को मजबूत रखता है।" }
+  ],
+  "History": [
+    { q: "पानीपत का प्रथम युद्ध कब हुआ था?", opts: ["1526", "1556", "1761", "1192"], ans: 0, hint: "यह बाबर और इब्राहिम लोदी के बीच हुआ था।" },
+    { q: "महात्मा गांधी का जन्म कब हुआ था?", opts: ["2 अक्टूबर 1869", "15 अगस्त 1947", "26 जनवरी 1950", "14 नवंबर 1889"], ans: 0, hint: "इस दिन गांधी जयंती मनाई जाती है।" }
+  ],
+  "Geography": [
+    { q: "भारत का सबसे बड़ा राज्य क्षेत्रफल की दृष्टि से कौन सा है?", opts: ["उत्तर प्रदेश", "महाराष्ट्र", "राजस्थान", "मध्य प्रदेश"], ans: 2, hint: "यह रेगिस्तानी क्षेत्र के लिए प्रसिद्ध है।" },
+    { q: "विश्व की सबसे लंबी नदी कौन सी है?", opts: ["अमेज़न नदी", "नील नदी", "गंगा नदी", "यांग्त्ज़ी नदी"], ans: 1, hint: "यह अफ्रीका महाद्वीप में है।" }
+  ]
+};
 
+let currentSubject = "GK & GS";
 let currentLevel = 1;
 let score = 0;
 let coins = 15;
@@ -153,22 +207,20 @@ function switchScreen(screenId) {
   document.getElementById(screenId).classList.add('active');
 }
 
-function startGame() {
+function selectSubject(sub) {
   playSound('click');
+  currentSubject = sub;
   currentLevel = 1;
   score = 0;
   coins = 15;
+  document.getElementById("headerTitle").textContent = sub;
   switchScreen('gameScreen');
   generateQuestion();
 }
 
-function startDaily() {
+function openLiveClass() {
   playSound('click');
-  currentLevel = Math.floor(Math.random * 50) + 1;
-  score = 0;
-  switchScreen('gameScreen');
-  generateQuestion();
-  alert("🔥 डेली चैलेंज: आपके लिए एक स्पेशल स्टडी प्रश्न लोड किया गया है!");
+  switchScreen('liveScreen');
 }
 
 function goToHome() {
@@ -177,7 +229,6 @@ function goToHome() {
   switchScreen('homeScreen');
 }
 
-// अनलिमिटेड और डायनामिक सवाल जनरेटर (स्टडी + पज़ल्स)
 function generateQuestion() {
   clearInterval(timer);
   answered = false;
@@ -188,38 +239,34 @@ function generateQuestion() {
   document.getElementById("coins").textContent = coins;
   document.getElementById("timer").textContent = time;
 
-  // अगर शुरुआती लेवल्स हैं तो फिक्स स्टडी बैंक से दें, वरना अनलिमिटेड आटोमैटिक बनाएं
-  if (currentLevel <= studyBank.length) {
-    currentQuestion = studyBank[currentLevel - 1];
+  let pool = [];
+  if (currentSubject === "All Subjects") {
+    let allKeys = Object.keys(subjectDatabase);
+    let randomKey = allKeys[Math.floor(Math.random() * allKeys.length)];
+    pool = subjectDatabase[randomKey];
   } else {
-    // अनलिमिटेड लेवल्स के लिए ऑटोमैटिक मैथ/लॉजिक सवाल जनरेट करना
-    let num1 = Math.floor(Math.random() * 20) + 2;
-    let num2 = Math.floor(Math.random() * 15) + 2;
-    let ops = ['+', '-', '×'];
-    let chosenOp = ops[Math.floor(Math.random() * ops.length)];
-    let res = 0;
-    if(chosenOp === '+') res = num1 + num2;
-    if(chosenOp === '-') res = num1 - num2;
-    if(chosenOp === '×') res = num1 * num2;
+    pool = subjectDatabase[currentSubject] || subjectDatabase["GK & GS"];
+  }
 
-    let wrong1 = res + 2;
-    let wrong2 = res - 3;
-    let wrong3 = res + 5;
-    let opts = [res.toString(), wrong1.toString(), wrong2.toString(), wrong3.toString()];
-    // शफल करें
+  // अगर बैंक में सवाल हैं तो वहां से लें, वरना अनलिमिटेड ऑटोमैटिक बनाएं
+  if (currentLevel <= pool.length) {
+    currentQuestion = pool[currentLevel - 1];
+  } else {
+    let num1 = Math.floor(Math.random() * 30) + 5;
+    let num2 = Math.floor(Math.random() * 20) + 2;
+    let res = num1 + num2;
+    let opts = [res.toString(), (res + 3).toString(), (res - 2).toString(), (res + 5).toString()];
     opts.sort(() => Math.random() - 0.5);
-    let correctIdx = opts.indexOf(res.toString());
-
+    
     currentQuestion = {
-      cat: "📐 गणित और एप्टीट्यूड (Unlimited)",
-      q: `लेवल ${currentLevel} अभ्यास: सरल करें ${num1} ${chosenOp} ${num2} = ?`,
+      q: `${currentSubject} अभ्यास प्रश्न (${currentLevel}): हल करें ${num1} + ${num2} = ?`,
       opts: opts,
-      ans: correctIdx,
-      hint: "बुनियादी गणितीय गणना (Basic Calculation) का उपयोग करें।"
+      ans: opts.indexOf(res.toString()),
+      hint: "सामान्य मानसिक योग्यता और जोड़ का उपयोग करें।"
     };
   }
 
-  document.getElementById("category").textContent = currentQuestion.cat;
+  document.getElementById("category").textContent = currentSubject;
   document.getElementById("question").textContent = currentQuestion.q;
 
   document.getElementById("message").textContent = "";
@@ -240,10 +287,7 @@ function generateQuestion() {
     optionsContainer.appendChild(btn);
   });
 
-  // प्रोग्रेस बार को अनलिमिटेड लूप में सेट करना
-  let progPercent = (currentLevel % 10) * 10;
-  if(progPercent === 0) progPercent = 100;
-  document.getElementById("progressBar").style.width = progPercent + "%";
+  document.getElementById("progressBar").style.width = ((currentLevel % 10) * 10 || 100) + "%";
 
   timer = setInterval(() => {
     time--;
@@ -305,7 +349,7 @@ function showCorrect() {
 
 function nextQuestion() {
   playSound('click');
-  currentLevel++; // लेवल आगे बढ़ेगा, कभी खत्म नहीं होगा (Unlimited!)
+  currentLevel++;
   generateQuestion();
 }
 
