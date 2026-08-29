@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India</title>
+<title>Mind Master India - Study & Unlimited Puzzles</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#111827,#312e81);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
 .container{width:100%;max-width:520px;padding:18px}
 .card{background:white;color:#172033;border-radius:24px;padding:24px;box-shadow:0 15px 35px #0006;transition:transform 0.2s}
-h1{margin:0 0 5px;font-size:28px;text-align:center;color:#312e81}
-.subtitle{color:#64748b;font-size:14px;text-align:center;margin-bottom:20px}
+h1{margin:0 0 5px;font-size:26px;text-align:center;color:#312e81}
+.subtitle{color:#64748b;font-size:13px;text-align:center;margin-bottom:20px}
 .btn{width:100%;padding:14px;border:0;border-radius:14px;font-size:17px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-align:center;transition:transform 0.1s}
 .btn:active{transform:scale(0.97)}
 .btn-primary{background:#4f46e5;color:white}
@@ -20,10 +20,10 @@ h1{margin:0 0 5px;font-size:28px;text-align:center;color:#312e81}
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;color:white}
 .coins{background:#facc15;color:#111827;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:14px}
 .progress{height:8px;background:#475569;border-radius:10px;overflow:hidden;margin-bottom:12px}
-.progress-bar{height:100%;width:1%;background:#22c55e;transition:.3s}
+.progress-bar{height:100%;width:10%;background:#22c55e;transition:.3s}
 .info{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:bold;font-size:14px;color:#cbd5e1}
 .category{display:inline-block;background:#e0e7ff;color:#3730a3;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-.question{font-size:20px;line-height:1.4;margin:18px 0}
+.question{font-size:19px;line-height:1.4;margin:18px 0}
 .options{display:grid;gap:10px}
 .option{padding:14px;border:2px solid #e5e7eb;border-radius:14px;background:#fff;font-size:16px;text-align:left;cursor:pointer;transition:transform 0.1s}
 .option:active{transform:scale(0.98)}
@@ -35,10 +35,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .message{text-align:center;min-height:22px;margin-top:12px;font-weight:bold;font-size:14px}
 .footer{text-align:center;color:#cbd5e1;margin-top:16px;font-size:13px}
 
-/* Shake Animation for Wrong Answer */
-.shake {
-  animation: shake 0.4s ease;
-}
+.shake { animation: shake 0.4s ease; }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-6px); }
@@ -53,8 +50,8 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <!-- 1. HOME SCREEN -->
   <div class="card screen active" id="homeScreen">
     <h1>🧠 Mind Master India</h1>
-    <div class="subtitle">100 Brain Puzzles, Sound & Animations</div>
-    <button class="btn btn-primary" onclick="startGame()">▶ खेल शुरू करें (Start)</button>
+    <div class="subtitle">Study, GK & Unlimited Brain Puzzles</div>
+    <button class="btn btn-primary" onclick="startGame()">▶ खेल शुरू करें (Unlimited Play)</button>
     <button class="btn btn-secondary" onclick="startDaily()">🔥 डेली चैलेंज</button>
   </div>
 
@@ -62,7 +59,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <div class="screen" id="gameScreen">
     <header>
       <div>
-        <h2 style="margin:0;font-size:20px;color:white;">Mind Master India</h2>
+        <h2 style="margin:0;font-size:18px;color:white;">Mind Master India</h2>
       </div>
       <div class="coins">🪙 <span id="coins">15</span></div>
     </header>
@@ -72,13 +69,13 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
 
     <div class="info">
-      <span>Level <span id="level">1</span>/100</span>
+      <span>Level <span id="level">1</span> (Unlimited)</span>
       <span>⭐ <span id="score">0</span></span>
       <span>⏱️ <span id="timer">30</span>s</span>
     </div>
 
     <div class="card" id="quizCard">
-      <div class="category" id="category">Number Puzzle</div>
+      <div class="category" id="category">📚 General Knowledge</div>
       <div class="question" id="question">Loading...</div>
       <div class="options" id="options"></div>
       <div class="buttons">
@@ -89,20 +86,19 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
   </div>
 
-  <!-- 3. GAME OVER SCREEN -->
+  <!-- 3. GAME OVER SCREEN (अगर कभी लाइफ खत्म हों) -->
   <div class="card screen" id="gameOverScreen" style="text-align:center;">
-    <h2>🏆 शानदार सफर!</h2>
-    <p>आपने सभी लेवल्स पूरे कर लिए हैं।</p>
+    <h2>🏆 शानदार प्रदर्शन!</h2>
+    <p>आपने बेहतरीन अभ्यास किया है।</p>
     <h3>⭐ कुल स्कोर: <span id="finalScore">0</span></h3>
     <h3>🪙 कुल सिक्के: <span id="finalCoins">0</span></h3>
     <button class="btn btn-primary" onclick="goToHome()" style="margin-top:15px;">🏠 होम पेज पर जाएं</button>
   </div>
 
-  <div class="footer">Mind Master India • Sound & Animation Edition</div>
+  <div class="footer">Mind Master India • Study Edition</div>
 </div>
 
 <script>
-// --- WEB AUDIO API SOUND GENERATOR ---
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 function playSound(type) {
   if (!audioCtx) return;
@@ -133,52 +129,24 @@ function playSound(type) {
   }
 }
 
-// --- QUESTIONS DATABASE ---
-const questions = [];
-const categories = ["🔢 Number Puzzle", "🧠 Logic Puzzle", "👀 Observation", "🤔 Riddle", "🇮🇳 India General Knowledge"];
-const hintsList = [
-  "सवाल को एक बार फिर ध्यान से पढ़ें।", 
-  "इसमें थोड़ा गणितीय या तार्किक नियम छिपा है।", 
-  "जल्दबाजी न करें, पहली सोच अक्सर ट्रैप होती है।", 
-  "विकल्पों को ध्यान से जांचें।"
+// स्टडी और लॉजिक आधारित स्टडी बैंक
+const studyBank = [
+  { cat: "📚 सामान्य ज्ञान (GK)", q: "भारत की राजधानी क्या है?", opts: ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"], ans: 1, hint: "यह उत्तर भारत का मुख्य प्रशासनिक केंद्र है।" },
+  { cat: "📚 सामान्य ज्ञान (GK)", q: "भारत के प्रथम राष्ट्रपति कौन थे?", opts: ["डॉ. राजेन्द्र प्रसाद", "पं. जवाहरलाल नेहरू", "महात्मा गांधी", "सरदार पटेल"], ans: 0, hint: "इनका संबंध बिहार से था।" },
+  { cat: "📐 गणित (Maths)", q: "15 का 20% कितना होता है?", opts: ["2", "3", "5", "10"], ans: 1, hint: "15 को 20 से गुणा करके 100 से भाग दें।" },
+  { cat: "📐 गणित (Maths)", q: "अगर एक वर्ग की भुजा 5 सेमी है, तो उसका क्षेत्रफल क्या होगा?", opts: ["10 वर्ग सेमी", "20 वर्ग सेमी", "25 वर्ग सेमी", "15 वर्ग सेमी"], ans: 2, hint: "क्षेत्रफल = भुजा × भुजा" },
+  { cat: "🧠 रीजनिंग (Reasoning)", q: "ACE, GGI के बाद अगला क्रम क्या होगा? (मान लीजिए पैटर्न अनुसार)", opts: ["IKM", "MOQ", "ACE", "BDF"], ans: 0, hint: "वर्णमाला (Alphabet) में अक्षरों का गैپ देखें।" },
+  { cat: "🔬 विज्ञान (Science)", q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", opts: ["फीमर (जांघ की)", "रेडियस", "टीबिया", "स्कल"], ans: 0, hint: "यह पैर की हड्डी होती है।" },
+  { cat: "🔬 विज्ञान (Science)", q: "प्रकाश वर्ष (Light Year) किसकी इकाई है?", opts: ["समय", "दूरी", "प्रकाश की तीव्रता", "गति"], ans: 1, hint: "यह अंतरिक्ष में लंबी दूरियां मापने के काम आती है।" }
 ];
 
-for (let i = 1; i <= 100; i++) {
-  let cat = categories[(i - 1) % categories.length];
-  let qText = `लेवल ${i}: यदि एक क्रम आगे बढ़ रहा है, तो अगला सही कदम क्या होगा?`;
-  let opts = [i * 2, i * 3, i + 10, i * 4];
-  let ans = 0;
-  
-  if(i === 1) { qText = "2, 4, 8, 16, ?"; opts = ["20", "24", "32", "36"]; ans = 2; }
-  else if(i === 2) { qText = "3, 6, 11, 18, 27, ?"; opts = ["36", "38", "40", "42"]; ans = 1; }
-  else if(i === 5) { qText = "कौन सा महीना 28 दिनों का होता है?"; opts = ["फरवरी", "जनवरी", "सारे 12 महीने", "कोई नहीं"]; ans = 2; }
-  else if(i === 10) { qText = "10 + 10 ÷ 2 = ?"; opts = ["10", "15", "20", "25"]; ans = 1; }
-  else if(i === 25) { qText = "1, 4, 9, 16, ?"; opts = ["20", "24", "25", "30"]; ans = 2; }
-  else if(i === 50) { qText = "भारत की राजधानी क्या है?"; opts = ["मुंबई", "नई दिल्ली", "पुणे", "नागपुर"]; ans = 1; }
-  else if(i === 75) { qText = "7 × 8 = ?"; opts = ["54", "56", "58", "64"]; ans = 1; }
-  else if(i === 100) { qText = "⚡ अंतिम Mind Trap: 3, 6, 11, 18, ?"; opts = ["25", "26", "27", "28"]; ans = 2; }
-  else {
-    let correctVal = (i * 2);
-    ans = Math.floor(Math.random() * 4);
-    opts = [i + 5, i * 2, (i * 3) - 1, i + 12];
-    opts[ans] = correctVal;
-  }
-
-  questions.push({
-    q: qText,
-    options: opts.map(String),
-    answer: ans,
-    cat: cat,
-    hint: hintsList[i % hintsList.length]
-  });
-}
-
-let current = 0;
+let currentLevel = 1;
 let score = 0;
 let coins = 15;
 let time = 30;
 let timer = null;
 let answered = false;
+let currentQuestion = {};
 
 function switchScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -187,20 +155,20 @@ function switchScreen(screenId) {
 
 function startGame() {
   playSound('click');
-  current = 0;
+  currentLevel = 1;
   score = 0;
   coins = 15;
   switchScreen('gameScreen');
-  loadQuestion();
+  generateQuestion();
 }
 
 function startDaily() {
   playSound('click');
-  current = Math.floor(Math.random() * 90);
+  currentLevel = Math.floor(Math.random * 50) + 1;
   score = 0;
   switchScreen('gameScreen');
-  loadQuestion();
-  alert("🔥 डेली चैलेंज शुरू! आपके लिए एक स्पेशल रैंडम लेवल चुना गया है।");
+  generateQuestion();
+  alert("🔥 डेली चैलेंज: आपके लिए एक स्पेशल स्टडी प्रश्न लोड किया गया है!");
 }
 
 function goToHome() {
@@ -209,19 +177,50 @@ function goToHome() {
   switchScreen('homeScreen');
 }
 
-function loadQuestion() {
+// अनलिमिटेड और डायनामिक सवाल जनरेटर (स्टडी + पज़ल्स)
+function generateQuestion() {
   clearInterval(timer);
   answered = false;
   time = 30;
 
-  document.getElementById("level").textContent = current + 1;
+  document.getElementById("level").textContent = currentLevel;
   document.getElementById("score").textContent = score;
   document.getElementById("coins").textContent = coins;
   document.getElementById("timer").textContent = time;
 
-  const q = questions[current];
-  document.getElementById("category").textContent = q.cat;
-  document.getElementById("question").textContent = q.q;
+  // अगर शुरुआती लेवल्स हैं तो फिक्स स्टडी बैंक से दें, वरना अनलिमिटेड आटोमैटिक बनाएं
+  if (currentLevel <= studyBank.length) {
+    currentQuestion = studyBank[currentLevel - 1];
+  } else {
+    // अनलिमिटेड लेवल्स के लिए ऑटोमैटिक मैथ/लॉजिक सवाल जनरेट करना
+    let num1 = Math.floor(Math.random() * 20) + 2;
+    let num2 = Math.floor(Math.random() * 15) + 2;
+    let ops = ['+', '-', '×'];
+    let chosenOp = ops[Math.floor(Math.random() * ops.length)];
+    let res = 0;
+    if(chosenOp === '+') res = num1 + num2;
+    if(chosenOp === '-') res = num1 - num2;
+    if(chosenOp === '×') res = num1 * num2;
+
+    let wrong1 = res + 2;
+    let wrong2 = res - 3;
+    let wrong3 = res + 5;
+    let opts = [res.toString(), wrong1.toString(), wrong2.toString(), wrong3.toString()];
+    // शफल करें
+    opts.sort(() => Math.random() - 0.5);
+    let correctIdx = opts.indexOf(res.toString());
+
+    currentQuestion = {
+      cat: "📐 गणित और एप्टीट्यूड (Unlimited)",
+      q: `लेवल ${currentLevel} अभ्यास: सरल करें ${num1} ${chosenOp} ${num2} = ?`,
+      opts: opts,
+      ans: correctIdx,
+      hint: "बुनियादी गणितीय गणना (Basic Calculation) का उपयोग करें।"
+    };
+  }
+
+  document.getElementById("category").textContent = currentQuestion.cat;
+  document.getElementById("question").textContent = currentQuestion.q;
 
   document.getElementById("message").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
@@ -230,7 +229,7 @@ function loadQuestion() {
   const optionsContainer = document.getElementById("options");
   optionsContainer.innerHTML = "";
   
-  q.options.forEach((option, index) => {
+  currentQuestion.opts.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.className = "option";
     btn.textContent = option;
@@ -241,7 +240,10 @@ function loadQuestion() {
     optionsContainer.appendChild(btn);
   });
 
-  document.getElementById("progressBar").style.width = ((current + 1) / questions.length * 100) + "%";
+  // प्रोग्रेस बार को अनलिमिटेड लूप में सेट करना
+  let progPercent = (currentLevel % 10) * 10;
+  if(progPercent === 0) progPercent = 100;
+  document.getElementById("progressBar").style.width = progPercent + "%";
 
   timer = setInterval(() => {
     time--;
@@ -265,7 +267,7 @@ function checkAnswer(index, button) {
   answered = true;
   clearInterval(timer);
 
-  const correct = questions[current].answer;
+  const correct = currentQuestion.ans;
   document.querySelectorAll(".option").forEach(b => b.disabled = true);
 
   if (index === correct) {
@@ -279,7 +281,6 @@ function checkAnswer(index, button) {
   } else {
     playSound('wrong');
     button.classList.add("wrong");
-    // Shake Animation Trigger
     const card = document.getElementById("quizCard");
     card.classList.add("shake");
     setTimeout(() => card.classList.remove("shake"), 400);
@@ -295,7 +296,7 @@ function checkAnswer(index, button) {
 }
 
 function showCorrect() {
-  const correct = questions[current].answer;
+  const correct = currentQuestion.ans;
   const buttons = document.querySelectorAll(".option");
   if (buttons[correct]) {
     buttons[correct].classList.add("correct");
@@ -304,14 +305,8 @@ function showCorrect() {
 
 function nextQuestion() {
   playSound('click');
-  current++;
-  if (current >= questions.length) {
-    switchScreen('gameOverScreen');
-    document.getElementById("finalScore").textContent = score;
-    document.getElementById("finalCoins").textContent = coins;
-  } else {
-    loadQuestion();
-  }
+  currentLevel++; // लेवल आगे बढ़ेगा, कभी खत्म नहीं होगा (Unlimited!)
+  generateQuestion();
 }
 
 function useHint() {
@@ -324,7 +319,7 @@ function useHint() {
   }
   coins -= 3;
   document.getElementById("coins").textContent = coins;
-  document.getElementById("message").textContent = "💡 " + questions[current].hint;
+  document.getElementById("message").textContent = "💡 " + currentQuestion.hint;
   document.getElementById("message").style.color = "#d97706";
   document.getElementById("hintBtn").disabled = true;
 }
