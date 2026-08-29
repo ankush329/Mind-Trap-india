@@ -1,83 +1,96 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - 100 Levels</title>
+<title>Mind Master India</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#111827,#312e81);color:white;min-height:100vh}
-.container{width:100%;max-width:520px;margin:auto;padding:18px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-h1{margin:0;font-size:24px}
-.subtitle{color:#cbd5e1;font-size:13px;margin-top:3px}
-.coins{background:#facc15;color:#111827;padding:8px 12px;border-radius:20px;font-weight:bold;font-size:14px}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#111827,#312e81);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
+.container{width:100%;max-width:520px;padding:18px}
+.card{background:white;color:#172033;border-radius:24px;padding:24px;box-shadow:0 15px 35px #0006}
+h1{margin:0 0 5px;font-size:28px;text-align:center;color:#312e81}
+.subtitle{color:#64748b;font-size:14px;text-align:center;margin-bottom:20px}
+.btn{width:100%;padding:14px;border:0;border-radius:14px;font-size:17px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-align:center}
+.btn-primary{background:#4f46e5;color:white}
+.btn-secondary{background:#facc15;color:#111827}
+.screen{display:none}
+.screen.active{display:block}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;color:white}
+.coins{background:#facc15;color:#111827;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:14px}
 .progress{height:8px;background:#475569;border-radius:10px;overflow:hidden;margin-bottom:12px}
 .progress-bar{height:100%;width:1%;background:#22c55e;transition:.3s}
-.info{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:bold;font-size:14px}
-.card{background:white;color:#172033;border-radius:24px;padding:22px;box-shadow:0 15px 35px #0006}
+.info{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:bold;font-size:14px;color:#cbd5e1}
 .category{display:inline-block;background:#e0e7ff;color:#3730a3;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
 .question{font-size:20px;line-height:1.4;margin:18px 0}
 .options{display:grid;gap:10px}
 .option{padding:14px;border:2px solid #e5e7eb;border-radius:14px;background:#fff;font-size:16px;text-align:left;cursor:pointer}
-.option:active{transform:scale(.98)}
 .correct{background:#dcfce7 !important;border-color:#22c55e !important}
 .wrong{background:#fee2e2 !important;border-color:#ef4444 !important}
 .buttons{display:flex;gap:10px;margin-top:16px}
-button{font-family:inherit}
 .hint{flex:1;padding:12px;border:0;border-radius:12px;background:#facc15;font-weight:bold;cursor:pointer}
 .next{flex:1;padding:12px;border:0;border-radius:12px;background:#4f46e5;color:white;font-weight:bold;cursor:pointer;display:none}
 .message{text-align:center;min-height:22px;margin-top:12px;font-weight:bold;font-size:14px}
 .footer{text-align:center;color:#cbd5e1;margin-top:16px;font-size:13px}
-#gameOver{display:none;text-align:center}
-.restart{margin-top:18px;padding:14px 24px;border:0;border-radius:14px;background:#22c55e;color:white;font-size:16px;font-weight:bold;cursor:pointer}
 </style>
 </head>
 <body>
 
 <div class="container">
-<header>
-  <div>
+
+  <!-- 1. HOME SCREEN -->
+  <div class="card screen active" id="homeScreen">
     <h1>🧠 Mind Master India</h1>
-    <div class="subtitle">100 Brain Puzzle Challenge</div>
+    <div class="subtitle">100 Brain Puzzles & Logic Challenge</div>
+    <button class="btn btn-primary" onclick="startGame()">▶ खेल शुरू करें (Start)</button>
+    <button class="btn btn-secondary" onclick="startDaily()">🔥 डेली चैलेंज</button>
   </div>
-  <div class="coins">🪙 <span id="coins">15</span></div>
-</header>
 
-<div class="progress">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
+  <!-- 2. GAME SCREEN -->
+  <div class="screen" id="gameScreen">
+    <header>
+      <div>
+        <h2 style="margin:0;font-size:20px;color:white;">Mind Master India</h2>
+      </div>
+      <div class="coins">🪙 <span id="coins">15</span></div>
+    </header>
 
-<div class="info">
-  <span>Level <span id="level">1</span>/100</span>
-  <span>⭐ <span id="score">0</span></span>
-  <span>⏱️ <span id="timer">30</span>s</span>
-</div>
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-<div class="card" id="gameCard">
-  <div class="category" id="category">Number Puzzle</div>
-  <div class="question" id="question">Loading...</div>
-  <div class="options" id="options"></div>
-  <div class="buttons">
-    <button class="hint" id="hintBtn">💡 Hint (3 🪙)</button>
-    <button class="next" id="nextBtn">Next ➜</button>
+    <div class="info">
+      <span>Level <span id="level">1</span>/100</span>
+      <span>⭐ <span id="score">0</span></span>
+      <span>⏱️ <span id="timer">30</span>s</span>
+    </div>
+
+    <div class="card">
+      <div class="category" id="category">Number Puzzle</div>
+      <div class="question" id="question">Loading...</div>
+      <div class="options" id="options"></div>
+      <div class="buttons">
+        <button class="hint" id="hintBtn" onclick="useHint()">💡 Hint (3 🪙)</button>
+        <button class="next" id="nextBtn" onclick="nextQuestion()">Next ➜</button>
+      </div>
+      <div class="message" id="message"></div>
+    </div>
   </div>
-  <div class="message" id="message"></div>
-</div>
 
-<div class="card" id="gameOver">
-  <h2>🏆 शानदार सफर!</h2>
-  <p>आपने Mind Master India के सभी 100 levels पूरे कर लिए हैं।</p>
-  <h3>⭐ कुल स्कोर: <span id="finalScore">0</span></h3>
-  <h3>🪙 कुल सिक्के: <span id="finalCoins">0</span></h3>
-  <button class="restart" onclick="restartGame()">🔄 फिर से खेलें</button>
-</div>
+  <!-- 3. GAME OVER SCREEN -->
+  <div class="card screen" id="gameOverScreen" style="text-align:center;">
+    <h2>🏆 शानदार सफर!</h2>
+    <p>आपने सभी लेवल्स पूरे कर लिए हैं।</p>
+    <h3>⭐ कुल स्कोर: <span id="finalScore">0</span></h3>
+    <h3>🪙 कुल सिक्के: <span id="finalCoins">0</span></h3>
+    <button class="btn btn-primary" onclick="goToHome()" style="margin-top:15px;">🏠 होम पेज पर जाएं</button>
+  </div>
 
-<div class="footer">Mind Master India • 100 Levels Edition</div>
+  <div class="footer">Mind Master India • 100 Levels Edition</div>
 </div>
 
 <script>
-// 100 लेवल्स का डेटाबेस (Easy से Expert तक)
 const questions = [];
 const categories = ["🔢 Number Puzzle", "🧠 Logic Puzzle", "👀 Observation", "🤔 Riddle", "🇮🇳 India General Knowledge"];
 const hintsList = [
@@ -93,7 +106,6 @@ for (let i = 1; i <= 100; i++) {
   let opts = [i * 2, i * 3, i + 10, i * 4];
   let ans = 0;
   
-  // कुछ चुनिंदा खास लेवल्स के लिए सटीक सवाल
   if(i === 1) { qText = "2, 4, 8, 16, ?"; opts = ["20", "24", "32", "36"]; ans = 2; }
   else if(i === 2) { qText = "3, 6, 11, 18, 27, ?"; opts = ["36", "38", "40", "42"]; ans = 1; }
   else if(i === 5) { qText = "कौन सा महीना 28 दिनों का होता है?"; opts = ["फरवरी", "जनवरी", "सारे 12 महीने", "कोई नहीं"]; ans = 2; }
@@ -103,11 +115,9 @@ for (let i = 1; i <= 100; i++) {
   else if(i === 75) { qText = "7 × 8 = ?"; opts = ["54", "56", "58", "64"]; ans = 1; }
   else if(i === 100) { qText = "⚡ अंतिम Mind Trap: 3, 6, 11, 18, ?"; opts = ["25", "26", "27", "28"]; ans = 2; }
   else {
-    // जेनरेटेड लेवल्स के लिए शफलिंग
-    opts = [i + 5, i * 2, (i * 3) - 1, i + 12];
-    ans = Math.floor(Math.random() * 4);
-    // सही उत्तर को शफल विकल्प में सेट करना
     let correctVal = (i * 2);
+    ans = Math.floor(Math.random() * 4);
+    opts = [i + 5, i * 2, (i * 3) - 1, i + 12];
     opts[ans] = correctVal;
   }
 
@@ -127,48 +137,74 @@ let time = 30;
 let timer = null;
 let answered = false;
 
-const $ = id => document.getElementById(id);
+function switchScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+function startGame() {
+  current = 0;
+  score = 0;
+  coins = 15;
+  switchScreen('gameScreen');
+  loadQuestion();
+}
+
+function startDaily() {
+  current = Math.floor(Math.random() * 90);
+  score = 0;
+  switchScreen('gameScreen');
+  loadQuestion();
+  alert("🔥 डेली चैलेंज शुरू! आपके लिए एक स्पेशल रैंडम लेवल चुना गया है।");
+}
+
+function goToHome() {
+  clearInterval(timer);
+  switchScreen('homeScreen');
+}
 
 function loadQuestion() {
   clearInterval(timer);
   answered = false;
   time = 30;
 
-  $("level").textContent = current + 1;
-  $("score").textContent = score;
-  $("coins").textContent = coins;
-  $("timer").textContent = time;
+  document.getElementById("level").textContent = current + 1;
+  document.getElementById("score").textContent = score;
+  document.getElementById("coins").textContent = coins;
+  document.getElementById("timer").textContent = time;
 
   const q = questions[current];
-  $("category").textContent = q.cat;
-  $("question").textContent = q.q;
+  document.getElementById("category").textContent = q.cat;
+  document.getElementById("question").textContent = q.q;
 
-  $("message").textContent = "";
-  $("nextBtn").style.display = "none";
-  $("hintBtn").disabled = false;
+  document.getElementById("message").textContent = "";
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("hintBtn").disabled = false;
 
-  $("options").innerHTML = "";
+  const optionsContainer = document.getElementById("options");
+  optionsContainer.innerHTML = "";
+  
   q.options.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.className = "option";
     btn.textContent = option;
     btn.onclick = () => checkAnswer(index, btn);
-    $("options").appendChild(btn);
+    optionsContainer.appendChild(btn);
   });
 
-  $("progressBar").style.width = ((current + 1) / questions.length * 100) + "%";
+  document.getElementById("progressBar").style.width = ((current + 1) / questions.length * 100) + "%";
 
   timer = setInterval(() => {
     time--;
-    $("timer").textContent = time;
+    document.getElementById("timer").textContent = time;
     if (time <= 0) {
       clearInterval(timer);
       if (!answered) {
         answered = true;
-        $("message").textContent = "⏰ समय समाप्त!";
-        $("message").style.color = "red";
+        document.getElementById("message").textContent = "⏰ समय समाप्त!";
+        document.getElementById("message").style.color = "red";
         showCorrect();
-        $("nextBtn").style.display = "block";
+        document.getElementById("nextBtn").style.display = "block";
       }
     }
   }, 1000);
@@ -187,18 +223,18 @@ function checkAnswer(index, button) {
     let points = 10 + time;
     score += points;
     coins += 3;
-    $("message").textContent = `🎉 सही जवाब! +${points} ⭐ +3 🪙`;
-    $("message").style.color = "green";
+    document.getElementById("message").textContent = `🎉 सही जवाब! +${points} ⭐ +3 🪙`;
+    document.getElementById("message").style.color = "green";
   } else {
     button.classList.add("wrong");
-    $("message").textContent = "❌ गलत जवाब!";
-    $("message").style.color = "red";
+    document.getElementById("message").textContent = "❌ गलत जवाब!";
+    document.getElementById("message").style.color = "red";
     showCorrect();
   }
 
-  $("score").textContent = score;
-  $("coins").textContent = coins;
-  $("nextBtn").style.display = "block";
+  document.getElementById("score").textContent = score;
+  document.getElementById("coins").textContent = coins;
+  document.getElementById("nextBtn").style.display = "block";
 }
 
 function showCorrect() {
@@ -209,47 +245,30 @@ function showCorrect() {
   }
 }
 
-$("nextBtn").onclick = () => {
+function nextQuestion() {
   current++;
   if (current >= questions.length) {
-    endGame();
+    switchScreen('gameOverScreen');
+    document.getElementById("finalScore").textContent = score;
+    document.getElementById("finalCoins").textContent = coins;
   } else {
     loadQuestion();
   }
-};
+}
 
-$("hintBtn").onclick = () => {
+function useHint() {
   if (answered) return;
   if (coins < 3) {
-    $("message").textContent = "🪙 Hint के लिए कम से कम 3 coins चाहिए।";
-    $("message").style.color = "#d97706";
+    document.getElementById("message").textContent = "🪙 Hint के लिए कम से कम 3 coins चाहिए।";
+    document.getElementById("message").style.color = "#d97706";
     return;
   }
   coins -= 3;
-  $("coins").textContent = coins;
-  $("message").textContent = "💡 " + questions[current].hint;
-  $("message").style.color = "#d97706";
-  $("hintBtn").disabled = true;
-};
-
-function endGame() {
-  clearInterval(timer);
-  $("gameCard").style.display = "none";
-  $("gameOver").style.display = "block";
-  $("finalScore").textContent = score;
-  $("finalCoins").textContent = coins;
+  document.getElementById("coins").textContent = coins;
+  document.getElementById("message").textContent = "💡 " + questions[current].hint;
+  document.getElementById("message").style.color = "#d97706";
+  document.getElementById("hintBtn").disabled = true;
 }
-
-function restartGame() {
-  current = 0;
-  score = 0;
-  coins = 15;
-  $("gameCard").style.display = "block";
-  $("gameOver").style.display = "none";
-  loadQuestion();
-}
-
-loadQuestion();
 </script>
 </body>
 </html>
