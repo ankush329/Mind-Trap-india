@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - All Subjects Study App</title>
+<title>Mind Master India - Chapterwise Study App</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
@@ -12,16 +12,21 @@ body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f
 h1{margin:0 0 5px;font-size:24px;text-align:center;color:#312e81}
 .subtitle{color:#64748b;font-size:13px;text-align:center;margin-bottom:18px}
 
-/* Subject Grid System */
+/* Subject Grid */
 .subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
 .sub-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:15px;text-align:center;cursor:pointer;transition:0.2s}
 .sub-card:active{transform:scale(0.96)}
 .sub-card span{font-size:26px;display:block;margin-bottom:6px}
 .sub-card h3{margin:0;font-size:15px;color:#1e293b}
 
+/* Chapter List */
+.chapter-list{display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto;margin-bottom:15px}
+.chapter-btn{background:#f1f5f9;border:1px solid #cbd5e1;padding:12px 15px;border-radius:12px;text-align:left;font-size:15px;font-weight:bold;color:#1e293b;cursor:pointer;transition:0.2s}
+.chapter-btn:hover{background:#e2e8f0}
+
 .btn{width:100%;padding:14px;border:0;border-radius:14px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px;text-align:center}
 .btn-primary{background:#4f46e5;color:white}
-.btn-live{background:linear-gradient(90deg,#ef4444,#f59e0b);color:white}
+.btn-secondary{background:#64748b;color:white}
 
 .screen{display:none}
 .screen.active{display:block}
@@ -54,54 +59,54 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 
 <div class="container">
 
-  <!-- 1. HOME SCREEN WITH ALL SUBJECTS -->
+  <!-- 1. SUBJECT SCREEN (HOME) -->
   <div class="card screen active" id="homeScreen">
     <h1>📚 Mind Master India</h1>
-    <div class="subtitle">Complete Study & Practice App for All Subjects</div>
+    <div class="subtitle">Chapterwise Study & Practice App</div>
     
     <div class="subject-grid">
-      <div class="sub-card" onclick="selectSubject('GK & GS')">
+      <div class="sub-card" onclick="openChapters('GK & GS')">
         <span>📖</span>
-        <h3>सामान्य ज्ञान (GK)</h3>
+        <h3>सामान्य ज्ञान</h3>
       </div>
-      <div class="sub-card" onclick="selectSubject('Mathematics')">
+      <div class="sub-card" onclick="openChapters('Mathematics')">
         <span>📐</span>
         <h3>गणित (Maths)</h3>
       </div>
-      <div class="sub-card" onclick="selectSubject('Reasoning')">
+      <div class="sub-card" onclick="openChapters('Reasoning')">
         <span>🧠</span>
-        <h3>तर्कशक्ति (Reasoning)</h3>
+        <h3>तर्कशक्ति</h3>
       </div>
-      <div class="sub-card" onclick="selectSubject('Science')">
+      <div class="sub-card" onclick="openChapters('Science')">
         <span>🔬</span>
         <h3>विज्ञान (Science)</h3>
       </div>
-      <div class="sub-card" onclick="selectSubject('History')">
+      <div class="sub-card" onclick="openChapters('History')">
         <span>🏛️</span>
-        <h3>इतिहास (History)</h3>
+        <h3>इतिहास</h3>
       </div>
-      <div class="sub-card" onclick="selectSubject('Geography')">
+      <div class="sub-card" onclick="openChapters('Geography')">
         <span>🌍</span>
-        <h3>भूगोल (Geography)</h3>
+        <h3>भूगोल</h3>
       </div>
     </div>
-
-    <button class="btn btn-live" onclick="openLiveClass()">🔴 Live Class / Mock Test</button>
-    <button class="btn btn-primary" onclick="selectSubject('All Subjects')">🚀 सभी विषय एक साथ (Mix Quiz)</button>
   </div>
 
-  <!-- 2. LIVE CLASS / NOTIFICATION SCREEN -->
-  <div class="card screen" id="liveScreen" style="text-align:center;">
-    <h2>🔴 Live Classes & Notes</h2>
-    <p style="color:#64748b;margin:15px 0;">लाइव क्लासेज और पीडीएफ नोट्स का फीचर जल्द ही अपडेट किया जा रहा है। तब तक आप सभी विषयों के मॉक टेस्ट प्रैक्टिस कर सकते हैं!</p>
-    <button class="btn btn-primary" onclick="goToHome()">🔙 होम पेज पर जाएं</button>
+  <!-- 2. CHAPTER SELECTION SCREEN -->
+  <div class="card screen" id="chapterScreen">
+    <h2 id="subjectTitle" style="margin-top:0;color:#312e81;">Chapters</h2>
+    <div class="subtitle">अपनी पसंद का चैप्टर चुनें</div>
+    <div class="chapter-list" id="chapterListContainer">
+      <!-- Chapters dynamically loaded -->
+    </div>
+    <button class="btn btn-secondary" onclick="goToHome()">🔙 विषय बदलें</button>
   </div>
 
-  <!-- 3. QUIZ / STUDY SCREEN -->
+  <!-- 3. QUIZ SCREEN -->
   <div class="screen" id="gameScreen">
     <header>
       <div>
-        <h2 style="margin:0;font-size:18px;color:white;" id="headerTitle">Subject Quiz</h2>
+        <h2 style="margin:0;font-size:16px;color:white;" id="headerTitle">Quiz</h2>
       </div>
       <div class="coins">🪙 <span id="coins">15</span></div>
     </header>
@@ -117,7 +122,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
 
     <div class="card" id="quizCard">
-      <div class="category-badge" id="category">Subject</div>
+      <div class="category-badge" id="category">Chapter</div>
       <div class="question" id="question">Loading...</div>
       <div class="options" id="options"></div>
       <div class="buttons">
@@ -126,9 +131,10 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
       </div>
       <div class="message" id="message"></div>
     </div>
+    <button class="btn btn-secondary" onclick="openChapters(currentSubject)" style="margin-top:12px;">🔙 चैप्टर सूची पर जाएं</button>
   </div>
 
-  <div class="footer">Mind Master India • Education Hub</div>
+  <div class="footer">Mind Master India • Chapterwise Education</div>
 </div>
 
 <script>
@@ -162,38 +168,56 @@ function playSound(type) {
   }
 }
 
-// सभी विषयों का डेटाबेस
-const subjectDatabase = {
-  "GK & GS": [
-    { q: "भारत की राजधानी क्या है?", opts: ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"], ans: 1, hint: "यह उत्तर भारत का मुख्य प्रशासनिक केंद्र है।" },
-    { q: "भारत के प्रथम राष्ट्रपति कौन थे?", opts: ["डॉ. राजेन्द्र प्रसाद", "पं. जवाहरलाल नेहरू", "महात्मा गांधी", "सरदार पटेल"], ans: 0, hint: "इनका संबंध बिहार से था।" },
-    { q: "भारत का राष्ट्रीय खेल कौन सा है?", opts: ["क्रिकेट", "हॉकी", "कबड्डी", "फुटबॉल"], ans: 1, hint: "यह स्टिक और बॉल से खेला जाता है।" }
-  ],
-  "Mathematics": [
-    { q: "15 का 20% कितना होता है?", opts: ["2", "3", "5", "10"], ans: 1, hint: "15 को 20 से गुणा करके 100 से भाग दें।" },
-    { q: "अगर एक वर्ग की भुजा 5 सेमी है, तो क्षेत्रफल क्या होगा?", opts: ["10 वर्ग सेमी", "20 वर्ग सेमी", "25 वर्ग सेमी", "15 वर्ग सेमी"], ans: 2, hint: "क्षेत्रफल = भुजा × भुजा" },
-    { q: "9 का वर्ग (Square) कितना होता है?", opts: ["18", "81", "72", "99"], ans: 1, hint: "9 को 9 से गुणा करें।" }
-  ],
-  "Reasoning": [
-    { q: "ACE, GGI के बाद अगला क्रम क्या होगा?", opts: ["IKM", "MOQ", "ACE", "BDF"], ans: 0, hint: "वर्णमाला में अक्षरों का गैپ देखें।" },
-    { q: "यदि A = 1, CAT = 24 हो, तो DOG = ?", opts: ["26", "28", "30", "32"], ans: 0, hint: "अक्षरों की नंबर वैल्यू को जोड़ें (D=4, O=15, G=7)।" }
-  ],
-  "Science": [
-    { q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", opts: ["फीमर (जांघ की)", "रेडियस", "टीबिया", "स्कल"], ans: 0, hint: "यह पैर की हड्डी होती है।" },
-    { q: "प्रकाश वर्ष किसकी इकाई है?", opts: ["समय", "दूरी", "प्रकाश की तीव्रता", "गति"], ans: 1, hint: "यह अंतरिक्ष में लंबी दूरियां मापने के काम आती है।" },
-    { q: "सूर्य के प्रकाश से कौन सा विटामिन मिलता है?", opts: ["विटामिन A", "विटामिन B", "विटामिन C", "विटामिन D"], ans: 3, hint: "यह हड्डियों को मजबूत रखता है।" }
-  ],
-  "History": [
-    { q: "पानीपत का प्रथम युद्ध कब हुआ था?", opts: ["1526", "1556", "1761", "1192"], ans: 0, hint: "यह बाबर और इब्राहिम लोदी के बीच हुआ था।" },
-    { q: "महात्मा गांधी का जन्म कब हुआ था?", opts: ["2 अक्टूबर 1869", "15 अगस्त 1947", "26 जनवरी 1950", "14 नवंबर 1889"], ans: 0, hint: "इस दिन गांधी जयंती मनाई जाती है।" }
-  ],
-  "Geography": [
-    { q: "भारत का सबसे बड़ा राज्य क्षेत्रफल की दृष्टि से कौन सा है?", opts: ["उत्तर प्रदेश", "महाराष्ट्र", "राजस्थान", "मध्य प्रदेश"], ans: 2, hint: "यह रेगिस्तानी क्षेत्र के लिए प्रसिद्ध है।" },
-    { q: "विश्व की सबसे लंबी नदी कौन सी है?", opts: ["अमेज़न नदी", "नील नदी", "गंगा नदी", "यांग्त्ज़ी नदी"], ans: 1, hint: "यह अफ्रीका महाद्वीप में है।" }
-  ]
+// चैप्टरवाइज प्रश्न बैंक (Chapterwise Question Bank)
+const chapterDatabase = {
+  "GK & GS": {
+    "चैप्टर 1: भारतीय राजव्यवस्था (Polity)": [
+      { q: "भारत के संविधान का पिता किसे कहा जाता है?", opts: ["महात्मा गांधी", "डॉ. बी.आर. अम्बेडकर", "जवाहरलाल नेहरू", "राजेंद्र प्रसाद"], ans: 1, hint: "इन्होंने प्रारूप समिति का नेतृत्व किया था।" },
+      { q: "मौलिक अधिकार किस देश के संविधान से लिए गए हैं?", opts: ["अमेरिका", "ब्रिटेन", "रूस", "आयरलैंड"], ans: 0, hint: "यह यूएसए (USA) का संविधान है।" }
+    ],
+    "चैप्टर 2: भारत का सामान्य ज्ञान (Basic GK)": [
+      { q: "भारत की राजधानी क्या है?", opts: ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"], ans: 1, hint: "यह उत्तर भारत का मुख्य प्रशासनिक केंद्र है।" },
+      { q: "भारत का राष्ट्रीय खेल कौन सा है?", opts: ["क्रिकेट", "हॉकी", "कबड्डी", "फुटबॉल"], ans: 1, hint: "यह स्टिक और बॉल से खेला जाता है।" }
+    ]
+  },
+  "Mathematics": {
+    "चैप्टर 1: प्रतिशतता (Percentage)": [
+      { q: "15 का 20% कितना होता है?", opts: ["2", "3", "5", "10"], ans: 1, hint: "15 को 20 से गुणा करके 100 से भाग दें।" },
+      { q: "50 का 50% कितना होगा?", opts: ["25", "20", "30", "15"], ans: 0, hint: "50 का आधा निकालें।" }
+    ],
+    "चैप्टर 2: क्षेत्रमिति (Mensuration)": [
+      { q: "यदि एक वर्ग की भुजा 5 सेमी है, तो क्षेत्रफल क्या होगा?", opts: ["10 वर्ग सेमी", "20 वर्ग सेमी", "25 वर्ग सेमी", "15 वर्ग सेमी"], ans: 2, hint: "क्षेत्रफल = भुजा × भुजा" },
+      { q: "आयत का क्षेत्रफल का सूत्र क्या है?", opts: ["लंबाई × चौड़ाई", "2 × (लंबाई + चौड़ाई)", "भुजा का वर्ग", "इनमें से कोई नहीं"], ans: 0, hint: "Length multiplied by Breadth." }
+    ]
+  },
+  "Reasoning": {
+    "चैप्टर 1: कोडिंग-डिकोडिंग (Coding)": [
+      { q: "ACE के बाद अगला क्रम क्या होगा?", opts: ["GIK", "MOQ", "BDF", "HJK"], ans: 0, hint: "एक-एक अक्षर छोड़कर आगे बढ़ें।" },
+      { q: "यदि CAT = 24 हो, तो DOG = ?", opts: ["26", "28", "30", "32"], ans: 0, hint: "अक्षरों की नंबर वैल्यू जोड़ें (D=4, O=15, G=7)।" }
+    ]
+  },
+  "Science": {
+    "चैप्टर 1: मानव शरीर (Human Body)": [
+      { q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", opts: ["फीमर (जांघ की)", "रेडियस", "टीबिया", "स्कल"], ans: 0, hint: "यह पैर की हड्डी होती है।" },
+      { q: "मनुष्य के शरीर में कुल कितनी हड्डियां होती हैं?", opts: ["206", "208", "210", "198"], ans: 0, hint: "यह एक वयस्क मानव में होती हैं।" }
+    ]
+  },
+  "History": {
+    "चैप्टर 1: आधुनिक भारत (Modern History)": [
+      { q: "पानीपत का प्रथम युद्ध कब हुआ था?", opts: ["1526", "1556", "1761", "1192"], ans: 0, hint: "यह बाबर और इब्राहिम लोदी के बीच हुआ था।" },
+      { q: "महात्मा गांधी का जन्म कब हुआ था?", opts: ["2 अक्टूबर 1869", "15 अगस्त 1947", "26 जनवरी 1950", "14 नवंबर 1889"], ans: 0, hint: "इस दिन गांधी जयंती मनाई जाती है।" }
+    ]
+  },
+  "Geography": {
+    "चैप्टर 1: भारतीय भूगोल (Indian Geography)": [
+      { q: "भारत का सबसे बड़ा राज्य क्षेत्रफल की दृष्टि से कौन सा है?", opts: ["उत्तर प्रदेश", "महाराष्ट्र", "राजस्थान", "मध्य प्रदेश"], ans: 2, hint: "यह रेगिस्तानी क्षेत्र के लिए प्रसिद्ध है।" },
+      { q: "विश्व की सबसे लंबी नदी कौन सी है?", opts: ["अमेज़न नदी", "नील नदी", "गंगा नदी", "यांग्त्ज़ी नदी"], ans: 1, hint: "यह अफ्रीका महाद्वीप में है।" }
+    ]
+  }
 };
 
-let currentSubject = "GK & GS";
+let currentSubject = "";
+let currentChapter = "";
 let currentLevel = 1;
 let score = 0;
 let coins = 15;
@@ -207,29 +231,44 @@ function switchScreen(screenId) {
   document.getElementById(screenId).classList.add('active');
 }
 
-function selectSubject(sub) {
-  playSound('click');
-  currentSubject = sub;
-  currentLevel = 1;
-  score = 0;
-  coins = 15;
-  document.getElementById("headerTitle").textContent = sub;
-  switchScreen('gameScreen');
-  generateQuestion();
-}
-
-function openLiveClass() {
-  playSound('click');
-  switchScreen('liveScreen');
-}
-
 function goToHome() {
   playSound('click');
   clearInterval(timer);
   switchScreen('homeScreen');
 }
 
-function generateQuestion() {
+function openChapters(subject) {
+  playSound('click');
+  currentSubject = subject;
+  document.getElementById("subjectTitle").textContent = subject + " Chapters";
+  
+  const container = document.getElementById("chapterListContainer");
+  container.innerHTML = "";
+
+  const chapters = chapterDatabase[subject] || {};
+  Object.keys(chapters).forEach(chap => {
+    const btn = document.createElement("button");
+    btn.className = "chapter-btn";
+    btn.textContent = "📁 " + chap;
+    btn.onclick = () => startChapterQuiz(chap);
+    container.appendChild(btn);
+  });
+
+  switchScreen('chapterScreen');
+}
+
+function startChapterQuiz(chapter) {
+  playSound('click');
+  currentChapter = chapter;
+  currentLevel = 1;
+  score = 0;
+  coins = 15;
+  document.getElementById("headerTitle").textContent = chapter;
+  switchScreen('gameScreen');
+  loadQuestion();
+}
+
+function loadQuestion() {
   clearInterval(timer);
   answered = false;
   time = 30;
@@ -239,34 +278,27 @@ function generateQuestion() {
   document.getElementById("coins").textContent = coins;
   document.getElementById("timer").textContent = time;
 
-  let pool = [];
-  if (currentSubject === "All Subjects") {
-    let allKeys = Object.keys(subjectDatabase);
-    let randomKey = allKeys[Math.floor(Math.random() * allKeys.length)];
-    pool = subjectDatabase[randomKey];
-  } else {
-    pool = subjectDatabase[currentSubject] || subjectDatabase["GK & GS"];
-  }
+  const pool = chapterDatabase[currentSubject][currentChapter] || [];
 
-  // अगर बैंक में सवाल हैं तो वहां से लें, वरना अनलिमिटेड ऑटोमैटिक बनाएं
+  // अगर चैप्टर के सवाल खत्म हों, तो अनलिमिटेड ऑटोमैटिक जनरेट करें
   if (currentLevel <= pool.length) {
     currentQuestion = pool[currentLevel - 1];
   } else {
-    let num1 = Math.floor(Math.random() * 30) + 5;
+    let num1 = Math.floor(Math.random() * 40) + 5;
     let num2 = Math.floor(Math.random() * 20) + 2;
     let res = num1 + num2;
-    let opts = [res.toString(), (res + 3).toString(), (res - 2).toString(), (res + 5).toString()];
+    let opts = [res.toString(), (res + 4).toString(), (res - 3).toString(), (res + 7).toString()];
     opts.sort(() => Math.random() - 0.5);
-    
+
     currentQuestion = {
-      q: `${currentSubject} अभ्यास प्रश्न (${currentLevel}): हल करें ${num1} + ${num2} = ?`,
+      q: `${currentChapter} (अभ्यास ${currentLevel}): हल करें ${num1} + ${num2} = ?`,
       opts: opts,
       ans: opts.indexOf(res.toString()),
-      hint: "सामान्य मानसिक योग्यता और जोड़ का उपयोग करें।"
+      hint: "इस चैप्टर के मूल नियमों के अनुसार गणना करें।"
     };
   }
 
-  document.getElementById("category").textContent = currentSubject;
+  document.getElementById("category").textContent = currentChapter;
   document.getElementById("question").textContent = currentQuestion.q;
 
   document.getElementById("message").textContent = "";
@@ -350,7 +382,7 @@ function showCorrect() {
 function nextQuestion() {
   playSound('click');
   currentLevel++;
-  generateQuestion();
+  loadQuestion();
 }
 
 function useHint() {
