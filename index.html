@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - Complete Exam Study App</title>
+<title>Mind Master India - Exam Study Hub</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
@@ -24,14 +24,12 @@ h1{margin:0 0 5px;font-size:24px;text-align:center;color:#312e81}
 .top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
 .profile-btn{background:#e0e7ff;color:#3730a3;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;cursor:pointer;border:0}
 
-/* Subject Grid */
 .subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
 .sub-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:0.2s}
 .sub-card:active{transform:scale(0.96)}
 .sub-card span{font-size:26px;display:block;margin-bottom:6px}
 .sub-card h3{margin:0;font-size:15px;color:#1e293b}
 
-/* Chapter List */
 .chapter-list{display:flex;flex-direction:column;gap:10px;max-height:350px;overflow-y:auto;margin-bottom:15px;padding-right:4px}
 .chapter-btn{background:#f1f5f9;border:1px solid #cbd5e1;padding:12px 15px;border-radius:12px;text-align:left;font-size:14px;font-weight:bold;color:#1e293b;cursor:pointer;transition:0.2s}
 .chapter-btn:hover{background:#e2e8f0}
@@ -56,81 +54,60 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 
 .ad-banner{background:#1e293b;color:#94a3b8;text-align:center;padding:10px;border-radius:12px;font-size:12px;margin-top:15px;border:1px dashed #475569}
 .footer{text-align:center;color:#94a3b8;margin-top:14px;font-size:12px}
-
-.shake { animation: shake 0.4s ease; }
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
-}
 </style>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- 1. LOGIN / REGISTER SCREEN -->
+  <!-- 1. LOGIN SCREEN -->
   <div class="card screen active" id="authScreen">
     <h1>📚 Mind Master India</h1>
-    <div class="subtitle">लॉगिन करें और अपनी परीक्षा की तैयारी शुरू करें</div>
+    <div class="subtitle">लॉगिन करें और तैयारी शुरू करें</div>
     <div class="form-group">
       <label>पूरा नाम (Full Name)</label>
       <input type="text" id="userNameInput" class="form-control" placeholder="अपना नाम दर्ज करें">
     </div>
-    <div class="form-group">
-      <label>मोबाइल नंबर / ईमेल</label>
-      <input type="text" id="userEmailInput" class="form-control" placeholder="Mobile or Email">
-    </div>
-    <button class="btn btn-primary" onclick="handleLogin()">🚀 लॉगिन / रजिस्टर करें</button>
+    <button class="btn btn-primary" onclick="handleLogin()">🚀 लॉगिन करें</button>
   </div>
 
-  <!-- 2. HOME SCREEN (SUBJECTS) -->
+  <!-- 2. HOME SCREEN -->
   <div class="card screen" id="homeScreen">
     <div class="top-bar">
       <div>
-        <h1 style="margin:0;font-size:20px;text-align:left;">📚 Exam Study Hub</h1>
+        <h1 style="margin:0;font-size:20px;text-align:left;">📚 Study Hub</h1>
       </div>
       <button class="profile-btn" onclick="openSettings()">⚙️ सेटिंग्स</button>
     </div>
     <div class="subtitle" id="welcomeUser">स्वागत है! विषय चुनें</div>
     
     <div class="subject-grid">
-      <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>1. गणित (Maths)</h3></div>
-      <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>2. रीजनिंग</h3></div>
-      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>3. जीएस / जीके</h3></div>
-      <div class="sub-card" onclick="openChapters('Hindi Grammar')"><span>🇮🇳</span><h3>4. हिंदी व्याकरण</h3></div>
+      <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>गणित (Maths)</h3></div>
+      <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>रीजनिंग</h3></div>
+      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>जीएस / जीके</h3></div>
+      <div class="sub-card" onclick="openChapters('Hindi Grammar')"><span>🇮🇳</span><h3>हिंदी व्याकरण</h3></div>
     </div>
     
-    <div class="ad-banner">📢 Ad Banner Space (Google AdMob / Earning Integration)</div>
+    <div class="ad-banner">📢 Ad Banner Space (Earning Enabled)</div>
   </div>
 
-  <!-- 3. CHAPTER SELECTION SCREEN -->
+  <!-- 3. CHAPTER SCREEN -->
   <div class="card screen" id="chapterScreen">
     <h2 id="subjectTitle" style="margin-top:0;color:#312e81;font-size:20px;">Chapters</h2>
-    <div class="subtitle">चैप्टर चुनें और प्रैक्टिस सेट हल करें</div>
+    <div class="subtitle">चैप्टर चुनें और प्रैक्टिस सेट शुरू करें</div>
     <div class="chapter-list" id="chapterListContainer"></div>
     <button class="btn btn-secondary" onclick="goToHome()">🔙 विषय बदलें</button>
   </div>
 
-  <!-- 4. SETTINGS SCREEN -->
+  <!-- 4. SETTINGS -->
   <div class="card screen" id="settingsScreen">
-    <h2 style="margin-top:0;color:#312e81;">⚙️ सेटिंग्स (Settings)</h2>
-    <div class="form-group" style="margin-top:20px;">
-      <label>यूजर प्रोफाइल</label>
-      <p id="profileDisplay" style="font-weight:bold;color:#1e293b;margin:5px 0;"></p>
-    </div>
-    <div class="form-group">
-      <label>साउंड इफेक्ट्स (Sound Effects)</label>
-      <select id="soundToggle" class="form-control" onchange="toggleSoundSetting()">
-        <option value="on">चालू (On)</option>
-        <option value="off">बंद (Off)</option>
-      </select>
-    </div>
-    <button class="btn btn-danger" onclick="logoutUser()">🚪 लॉग आउट (Logout)</button>
-    <button class="btn btn-secondary" onclick="goToHome()">🔙 होम पेज पर जाएं</button>
+    <h2 style="margin-top:0;color:#312e81;">⚙️ सेटिंग्स</h2>
+    <p id="profileDisplay" style="font-weight:bold;color:#1e293b;margin:15px 0;"></p>
+    <button class="btn btn-danger" onclick="logoutUser()">🚪 लॉग आउट</button>
+    <button class="btn btn-secondary" onclick="goToHome()">🔙 होम पेज</button>
   </div>
 
-  <!-- 5. QUIZ / PRACTICE SET SCREEN -->
+  <!-- 5. QUIZ SCREEN -->
   <div class="screen" id="gameScreen">
     <header>
       <div>
@@ -144,7 +121,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
 
     <div class="info">
-      <span>Practice Level <span id="level">1</span> (Unlimited)</span>
+      <span>Level <span id="level">1</span> (Unlimited)</span>
       <span>⭐ <span id="score">0</span></span>
       <span>⏱️ <span id="timer">30</span>s</span>
     </div>
@@ -159,134 +136,64 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
       </div>
       <div class="message" id="message"></div>
     </div>
-    <button class="btn btn-secondary" onclick="openChapters(currentSubject)" style="margin-top:12px;">🔙 चैप्टर सूची पर जाएं</button>
+    <button class="btn btn-secondary" onclick="openChapters(currentSubject)" style="margin-top:12px;">🔙 चैप्टर सूची</button>
   </div>
 
-  <div class="footer">Mind Master India • Exam Practice Edition</div>
+  <div class="footer">Mind Master India • Exam Edition</div>
 </div>
 
 <script>
-let soundEnabled = true;
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-function playSound(type) {
-  if (!soundEnabled || !audioCtx) return;
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-  const osc = audioCtx.createOscillator();
-  const gainNode = audioCtx.createGain();
-  osc.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
-
-  if (type === 'correct') {
-    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.15);
-    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.15);
-  } else if (type === 'wrong') {
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-    osc.frequency.linearRampToValueAtTime(90, audioCtx.currentTime + 0.2);
-    gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
-    gainNode.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.2);
-  } else if (type === 'click') {
-    osc.frequency.setValueAtTime(300, audioCtx.currentTime);
-    gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-  }
-}
-
-// सभी 4 विषयों के आपके द्वारा दिए गए स्क्रीनशॉट के अनुसार सभी चैप्टर्स की पूरी सूची
-const chapterDatabase = {
-  "Mathematics": {
-    "1. Number System (संख्या पद्धति)": [{ q: "सबसे छोटी अभाज्य संख्या कौन सी है?", opts: ["0", "1", "2", "3"], ans: 2, hint: "यह एकमात्र सम अभाज्य संख्या है।" }],
-    "2. HCF & LCM (ल.स. व म.स.)": [{ q: "12 और 15 का लघुत्तम समापवर्त्य (LCM) क्या होगा?", opts: ["30", "60", "45", "90"], ans: 1, hint: "ऐसी संख्या जो दोनों से विभाजित हो।" }],
-    "3. Simplification (सरलीकरण)": [{ q: "10 + 10 × 2 = ?", opts: ["40", "30", "20", "25"], ans: 1, hint: "BODMAS नियम का पालन करें।" }],
-    "4. Algebra (बीजगणित)": [{ q: "यदि x + 2 = 5 हो, तो x का मान क्या होगा?", opts: ["2", "3", "4", "5"], ans: 1, hint: "समीकरण को हल करें।" }],
-    "5. Percentage (प्रतिशत)": [{ q: "50 का 20% कितना होगा?", opts: ["5", "10", "15", "20"], ans: 1, hint: "50 × 20 / 100" }],
-    "6. Compound Interest (चक्रवृद्धि ब्याज)": [{ q: "चक्रवृद्धि ब्याज किस पर गणना किया जाता है?", opts: ["केवल मूलधन", "मूलधन और ब्याज दोनों", "केवल ब्याज", "इनमें से कोई नहीं"], ans: 1, hint: "ब्याज पर ब्याज लगता है।" }],
-    "7. Simple Interest (साधारण ब्याज)": [{ q: "1000 का 10% वार्षिक दर से 1 वर्ष का साधारण ब्याज क्या होगा?", opts: ["50", "100", "150", "200"], ans: 1, hint: "मूलधन × दर × समय / 100" }],
-    "8. Ratio & Proportion (अनुपात व समानुपात)": [{ q: "यदि 2:3 :: 4:x हो, तो x का मान क्या होगा?", opts: ["5", "6", "8", "9"], ans: 1, hint: "बाह्य पदों का गुणनफल = मध्य पदों का गुणनफल।" }],
-    "9. Mixture Alligation (मिश्रण)": [{ q: "दो प्रकार के चावल (मूल्य 20 और 30 प्रति kg) को किस अनुपात में मिलाया जाए कि औसत 24 हो?", opts: ["3:2", "2:3", "1:2", "2:1"], ans: 0, hint: "एलिगेशन मेथड लगाएं।" }],
-    "10. Partnership (साझेदारी)": [{ q: "साझेदारी व्यवसाय में लाभ का बँटवारा किस आधार पर होता है?", opts: ["केवल समय", "पूंजी और समय के गुणनफल पर", "केवल पूंजी", "बराबर-बराबर"], ans: 1, hint: "Investment × Time" }],
-    "11. Average (औसत)": [{ q: "प्रथम 5 प्राकृतिक संख्याओं का औसत क्या होगा?", opts: ["2", "3", "4", "5"], ans: 1, hint: "कुल योग / कुल संख्या" }],
-    "12. Time & Work (समय और कार्य)": [{ q: "यदि A किसी काम को 10 दिन में और B उसे 15 दिन में करे, तो दोनों मिलकर कितने दिन में करेंगे?", opts: ["5 दिन", "6 दिन", "8 दिन", "10 दिन"], ans: 1, hint: "LCM मेथड का उपयोग करें।" }],
-    "13. Pipe & Cistern (पाइप और टंकी)": [{ q: "एक नल किसी टंकी को 5 घंटे में भर सकता है, तो 1 घंटे में कितना भरेगा?", opts: ["1/5", "1/2", "1/4", "पूरा"], ans: 0, hint: "प्रति घंटा कार्य निकालें।" }],
-    "14. Time & Distance (समय और दूरी)": [{ q: "यदि चाल 60 किमी/घंटा है, तो 2 घंटे में कितनी दूरी तय होगी?", opts: ["100 किमी", "120 किमी", "140 किमी", "150 किमी"], ans: 1, hint: "दूरी = चाल × समय" }],
-    "15. Boat & Stream (नाव और धारा)": [{ q: "यदि नाव की चाल शांत जल में 10 किमी/घंटा और धारा की चाल 2 किमी/घंटा हो, तो धारा की दिशा में चाल क्या होगी?", opts: ["8 किमी/घंटा", "12 किमी/घंटा", "10 किमी/घंटा", "5 किमी/घंटा"], ans: 1, hint: "धारा की दिशा में चाल जुड़ जाती है।" }],
-    "16. Profit & Loss (लाभ और हानि)": [{ q: "यदि क्रय मूल्य 100 और विक्रय 120 है, तो लाभ % क्या है?", opts: ["10%", "20%", "25%", "15%"], ans: 1, hint: "लाभ 20 रुपये है।" }],
-    "17. Discount (छूट)": [{ q: "यदि अंकित मूल्य 500 है और छूट 10% है, तो विक्रय मूल्य क्या होगा?", opts: ["400", "450", "480", "420"], ans: 1, hint: "500 का 90% निकालें।" }],
-    "18. Trigonometry (त्रिकोणमिति)": [{ q: "sin²θ + cos²θ का मान कितना होता है?", opts: ["0", "1", "2", "अपरिभाषित"], ans: 1, hint: "यह त्रिकोणमिति की सबसे मुख्य सर्वसमिका है।" }],
-    "19. Height & Distance (ऊँचाई और दूरी)": [{ q: "यदि मीनार की ऊँचाई और उसकी छाया बराबर हो, तो सूर्य का उन्नयन कोण कितना होगा?", opts: ["30°", "45°", "60°", "90°"], ans: 1, hint: "tanθ = 1 (लंब = आधार)" }],
-    "20. Geometry (ज्यामिति)": [{ q: "त्रिभुज के तीनों आंतरिक कोणों का योग कितना होता है?", opts: ["90°", "180°", "270°", "360°"], ans: 1, hint: "यह त्रिभुज का मुख्य गुण है।" }],
-    "21. Mensuration - 2D (क्षेत्रमिति 2D)": [{ q: "वर्ग का क्षेत्रफल का सूत्र क्या है?", opts: ["लंबाई × चौड़ाई", "भुजा का वर्ग", "4 × भुजा", "परिमाप / 2"], ans: 1, hint: "Side × Side" }],
-    "22. Mensuration - 3D (क्षेत्रमिति 3D)": [{ q: "गोले का आयतन का सूत्र क्या है?", opts: ["4/3 πr³", "πr²h", "2πr", "6a²"], ans: 0, hint: "Sphere Volume formula" }]
-  },
-  "Reasoning": {
-    "1. वर्गीकरण (Classification)": [{ q: "इनमें से अलग शब्द चुनें: आम, सेब, संतरा, आलू", opts: ["आम", "सेब", "संतरा", "आलू"], ans: 3, hint: "आलू जमीन के अंदर उगता है।" }],
-    "2. सादृश्यता (Analogy)": [{ q: "पुस्तकालय : पुस्तकें :: संग्रहालय : ?", opts: ["इमारत", "कलाकृतियाँ", "लोग", "पुराने सिक्के"], ans: 1, hint: "संग्रहालय में कलाकृतियाँ होती हैं।" }],
-    "3. कोडिंग-डिकोडिंग (Coding-Decoding)": [{ q: "यदि CAT को 24 लिखा जाए, तो DOG को क्या लिखेंगे?", opts: ["26", "28", "30", "32"], ans: 0, hint: "अक्षरों के क्रम का योग करें।" }],
-    "4. शब्दों का तार्किक क्रम (Logical Arrangement)": [{ q: "सही क्रम चुनें: 1. पौधा 2. बीज 3. वृक्ष 4. फल", opts: ["2, 1, 3, 4", "1, 2, 3, 4", "2, 3, 1, 4", "4, 3, 2, 1"], ans: 0, hint: "पहले बीज फिर पौधा।" }],
-    "5. श्रृंखला (Series)": [{ q: "2, 4, 6, 8, ?", opts: ["10", "12", "14", "16"], ans: 0, hint: "+2 जोड़ें।" }],
-    "6. लुप्त पदों का भरना (Missing Characters)": [{ q: "2, 3, 5, 7, 11, ?", opts: ["12", "13", "15", "17"], ans: 1, hint: "अभाज्य संख्याएं (Prime Numbers)।" }],
-    "7. रक्त संबंध (Blood Relation)": [{ q: "पिता की बहन क्या लगती है?", opts: ["मामी", "चाची", "फूफी / बुआ", "मौसी"], ans: 2, hint: "पैटर्नल आंट।" }],
-    "8. दिशा परीक्षण (Direction Test)": [{ q: "सूरज किस दिशा से उगता है?", opts: ["पश्चिम", "उत्तर", "पूर्व", "दक्षिण"], ans: 2, hint: "East दिशा।" }],
-    "9. घड़ी और कलेंडर (Clock & Calendar)": [{ q: "साधारण वर्ष में कुल कितने दिन होते हैं?", opts: ["365", "366", "360", "370"], ans: 0, hint: "365 दिन।" }],
-    "10. पासा (Dice)": [{ q: "एक सामान्य पासे में कुल कितने फलक (Faces) होते हैं?", opts: ["4", "6", "8", "12"], ans: 1, hint: "पासे में 6 सतह होती हैं।" }],
-    "11. बैठक व्यवस्था (Sitting Arrangement)": [{ q: "वृत्ताकार घेरे में बैठे व्यक्तियों का मुख किधर होता है?", opts: ["केंद्र की ओर या बाहर", "केवल बाहर", "केवल नीचे", "कोई नहीं"], ans: 0, hint: "केंद्र की ओर।" }],
-    "12. क्रम व्यवस्था परीक्षण (Ranking Test)": [{ q: "यदि किसी पंक्ति में राम आगे से 10वें और पीछे से 15वें स्थान पर है, तो कुल कितने व्यक्ति हैं?", opts: ["24", "25", "26", "23"], ans: 0, hint: "10 + 15 - 1" }],
-    "13. वेन आरेख (Venn Diagram)": [{ q: "कुत्ता, बिल्ली, पालतू जानवर के लिए सही वेन आरेख क्या दर्शाएगा?", opts: ["अलग-अलग वृत्त", "एक के अंदर एक", "दो अलग वृत्त एक बड़े वृत्त के अंदर", "कोई नहीं"], ans: 2, hint: "दोनों पालतू हो सकते हैं पर अलग हैं।" }],
-    "14. गणितीय संक्रियाएँ (Mathematical Operations)": [{ q: "यदि '+' का अर्थ '×' हो, तो 2 + 3 = ?", opts: ["5", "6", "8", "10"], ans: 1, hint: "2 × 3" }],
-    "15. कथन और निष्कर्ष (Statement & Conclusion)": [{ q: "सभी पेन पेंसिल हैं। कुछ पेंसिल किताबें हैं। निष्कर्ष: कुछ पेन किताबें हैं?", opts: ["सत्य", "असत्य", "निश्चित नहीं", "इनमें से कोई नहीं"], ans: 2, hint: "सिलॉजिस्म का नियम।" }],
-    "16. न्याय संगतता (Syllogism)": [{ q: "सभी सेब फल हैं। सभी फल मीठे हैं। निष्कर्ष: सभी सेब मीठे हैं?", opts: ["सत्य", "असत्य", "संभव नहीं", "गलत"], ans: 0, hint: "न्याय वाक्य नियम।" }],
-    "17. दर्पण एवं जल प्रतिबिंब (Mirror & Water Images)": [{ q: "यदि घड़ी में 3 बजे हैं, तो दर्पण प्रतिबिंब में क्या समय दिखेगा?", opts: ["9 बजे", "6 बजे", "12 बजे", "3 बजे"], ans: 0, hint: "11:60 में से घटाएं।" }],
-    "18. कागज मोड़ना व काटना (Paper Folding)": [{ q: "कागज मोड़ने पर कौन सी समरूपता दिखती है?", opts: ["सिमेट्री", "असंतुलन", "विकर्ण", "कोई नहीं"], ans: 0, hint: "सिमेट्री (Symmetry)।" }],
-    "19. आकृति श्रृंखला (Figure Series)": [{ q: "आकृतियों के अगले क्रम को पहचानना क्या कहलाता है?", opts: ["फिगर सीरीज", "कोडिंग", "दिशा", "रक्त संबंध"], ans: 0, hint: "फिगर सीरीज।" }],
-    "20. आकृति पूर्तीकरण (Figure Completion)": [{ q: "अधूरी आकृति को पूरा करने के लिए क्या देखते हैं?", opts: ["पैटर्न", "रंग", "आकार", "सभी"], ans: 3, hint: "पैटर्न और आकार।" }],
-    "21. सन्निहित आकृतियाँ (Embedded Figures)": [{ q: "छिपी हुई आकृति खोजना किस श्रेणी में आता है?", opts: ["Embedded Figure", "Series", "Analogy", "Clock"], ans: 0, hint: "सन्निहित आकृति।" }],
-    "22. ज्यामितीय आकृतियों की गणना (Counting Figures)": [{ q: "दिए गए त्रिभुज में कुल कितने त्रिभुज हैं गिनना क्या कहलाता है?", opts: ["फिगर काउंटिंग", "कोडिंग", "डिकोडिंग", "रैंकिंग"], ans: 0, hint: "फिगर काउंटिंग।" }]
-  },
-  "GS & Static GK": {
-    "1. भारत की नदियाँ (Rivers in India)": [{ q: "भारत की सबसे लंबी नदी कौन सी है?", opts: ["यमुना", "गंगा", "ब्रह्मपुत्र", "गोदावरी"], ans: 1, hint: "गंगोत्री से उद्गम।" }],
-    "2. भारत के प्रमुख त्यौहार (Festivals)": [{ q: "बिहू किस राज्य का प्रसिद्ध त्योहार है?", opts: ["पंजाब", "असम", "केरल", "तमिलनाडु"], ans: 1, hint: "यह असम का लोक पर्व है।" }],
-    "3. भारत के लोक नृत्य (Folk Dances)": [{ q: "कथकली किस राज्य का शास्त्रीय नृत्य है?", opts: ["उत्तर प्रदेश", "केरल", "तमिलनाडु", "आंध्र प्रदेश"], ans: 1, hint: "दक्षिण भारत का प्रसिद्ध नृत्य।" }],
-    "4. वन्य जीव अभ्यारण्य (Wildlife Sanctuary)": [{ q: "जिम कॉर्बेट नेशनल पार्क कहाँ स्थित है?", opts: ["उत्तराखंड", "मध्य प्रदेश", "राजस्थान", "गुजरात"], ans: 0, hint: "भारत का पहला नेशनल पार्क।" }],
-    "5. भारत के बाँध (Dams)": [{ q: "भाखड़ा नंगल बांध किस नदी पर बना है?", opts: ["सतलुज", "गंगा", "महानदी", "कावेरी"], ans: 0, hint: "यह पंजाब/हिमाचल सीमा पर है।" }],
-    "6. पर्वत और झीलें (Mountains & Lakes)": [{ q: "विश्व की सबसे ऊंची चोटी कौन सी है?", opts: ["के-2", "माउंट एवरेस्ट", "कंचनजंगा", "नंदा देवी"], ans: 1, hint: "यह नेपाल में है।" }],
-    "7. संविधान सभा व निर्माण (Polity - Constitution)": [{ q: "भारतीय संविधान का पिता किसे कहते हैं?", opts: ["गांधीजी", "अम्बेडकर जी", "नेहरू जी", "राजेंद्र प्रसाद"], ans: 1, hint: "प्रारूप समिति के अध्यक्ष।" }],
-    "8. मौलिक अधिकार व नीति निर्देशक तत्व (Fundamental Rights)": [{ q: "भारतीय संविधान में कितने मौलिक अधिकार हैं?", opts: ["5", "6", "7", "8"], ans: 1, hint: "वर्तमान में 6 हैं।" }],
-    "9. राष्ट्रपति और प्रधानमंत्री (President & PM)": [{ q: "भारत का प्रथम नागरिक कौन होता है?", opts: ["प्रधानमंत्री", "राष्ट्रपति", "मुख्य न्यायाधीश", "लोकसभा स्पीकर"], ans: 1, hint: "देश के सर्वोच्च पद पर आसीन।" }],
-    "10. प्राचीन इतिहास - सिंधु घाटी सभ्यता (Indus Valley)": [{ q: "हड़प्पा की खोज किस वर्ष हुई थी?", opts: ["1921", "1922", "1930", "1935"], ans: 0, hint: "दयाराम साहनी द्वारा।" }],
-    "11. मध्यकालीन इतिहास - सल्तनत काल (Delhi Sultanate)": [{ q: "गुलाम वंश की स्थापना किसने की थी?", opts: ["कुतुबुद्दीन ऐबक", "इल्तुतमिश", "बलबन", "अलाउद्दीन खिलजी"], ans: 0, hint: "1206 ईस्वी में।" }],
-    "12. आधुनिक इतिहास - 1857 की क्रांति (1857 Revolt)": [{ q: "1857 की क्रांति की शुरुआत कहाँ से हुई थी?", opts: ["मेरठ", "दिल्ली", "कानपुर", "झांसी"], ans: 0, hint: "10 मई 1857 को।" }],
-    "13. भारतीय अर्थव्यवस्था (Indian Economy)": [{ q: "भारत की अर्थव्यवस्था कैसी है?", opts: ["पूंजीवादी", "समाजवादी", "মিশ্রित (Mixed)", "इनमें से कोई नहीं"], ans: 2, hint: "सार्वजनिक और निजी क्षेत्र दोनों।" }],
-    "14. पंचवर्षीय योजना (Five Year Plans)": [{ q: "प्रथम पंचवर्षीय योजना कब शुरू हुई थी?", opts: ["1950", "1951", "1952", "1955"], ans: 1, hint: "कृषि पर जोर दिया गया था।" }],
-    "15. जनगणना 2011 (2011 Census)": [{ q: "2011 की जनगणना के अनुसार भारत की साक्षरता दर लगभग कितनी थी?", opts: ["65%", "74%", "80%", "82%"], ans: 1, hint: "लगभग 74 प्रतिशत।" }],
-    "16. सौरमंडल (Solar System)": [{ q: "सूर्य के सबसे नजदीक ग्रह कौन सा है?", opts: ["बुध (Mercury)", "शुक्र", "मंगल", "पृथ्वी"], ans: 0, hint: "यह सबसे छोटा ग्रह भी है।" }]
-  },
-  "Hindi Grammar": {
-    "1. भाषा और वर्ण (Language & Alphabet)": [{ q: "हिंदी वर्णमाला में कुल कितने स्वर हैं?", opts: ["11", "13", "33", "52"], ans: 0, hint: "मुख्य स्वरों की संख्या 11 है।" }],
-    "2. ध्वनि एवं वर्तनी (Sound & Spelling)": [{ q: "इनमें से शुद्ध वर्तनी वाला शब्द कौन सा है?", opts: ["उज्जवल", "उज्ज्वल", "उज्वल", "उज्जवलि"], ans: 1, hint: "दो आधे 'ज' आते हैं।" }],
-    "3. संधि (Sandhi)": [{ q: "विद्यालय का संधि विच्छेद क्या होगा?", opts: ["विद्या + आलय", "विध + आलय", "विद्या + लय", "विद + यालय"], ans: 0, hint: "दीर्घ स्वर संधि।" }],
-    "4. शब्द विचार - तत्सम, तद्भव, पर्यायवाची (Vocabulary)": [{ q: "'सूर्य' का पर्यायवाची शब्द क्या है?", opts: ["चंद्रमा", "दिनकर", "जल", "आकाश"], ans: 1, hint: "इसे भास्कर या रवि भी कहते हैं।" }],
-    "5. उपसर्ग और प्रत्यय (Prefix & Suffix)": [{ q: "'प्रतिकूल' शब्द में कौन सा उपसर्ग लगा है?", opts: ["प्रति", "कूल", "प्र", "इलू"], ans: 0, hint: "आगे जुड़ने वाला शब्दांश।" }],
-    "6. समास (Samas)": [{ q: "गजानन में कौन सा समास है?", opts: ["तत्पुरुष", "बहुब्रीहि", "द्वंद्व", "द्विगु"], ans: 1, hint: "गणेश जी (तीसरा अर्थ)." }],
-    "7. संज्ञा (Noun)": [{ q: "'मिश्रण' या 'सोना' किस प्रकार की संज्ञा है?": "सोना किस प्रकार की संज्ञा है?", opts: ["व्यक्तिवाचक", "जातिवाचक", "द्रव्यवाचक", "भाववाचक"], ans: 2, hint: "सामग्री या धातु।" }],
-    "8. लिंग और वचन (Gender & Number)": [{ q: "इनमें से कौन सा शब्द हमेशा बहुवचन में रहता है?", opts: ["प्राण", "किताब", "लड़का", "घोड़ा"], ans: 0, hint: "प्राण, आंसू, दर्शन।" }],
-    "9. कारक (Case)": [{ q: "पेड़ से फल गिरा—इस वाक्य में 'से' किस कारक का चिह्न है?", opts: ["करण कारक", "अपादान कारक", "कर्म कारक", "संबोधन"], ans: 1, hint: "अलग होने के अर्थ में।" }],
-    "10. सर्वनाम (Pronoun)": [{ q: "'मैं अपने आप काम कर लूँगा'—इस वाक्य में 'अपने आप' क्या है?", opts: ["निजवाचक सर्वनाम", "पुरुषवाचक", "िश्चयवाचक", "संबंधवाचक"], ans: 0, hint: "स्वयं के लिए।" }],
-    "11. विशेषण (Adjective)": [{ q: "'सुंदर लड़का' में 'सुंदर' क्या है?", opts: ["संज्ञा", "सर्वनाम", "विशेषण", "क्रिया"], ans: 2, hint: "विशेषता बताने वाला शब्द।" }],
-    "12. क्रिया और काल (Verb & Tense)": [{ q: "राम ने खाना खा लिया होगा—यह किस काल का उदाहरण है?", opts: ["सामान्य भूत", "संदिग्ध भूत", "पूर्ण भूत", "भविष्यत"], ans: 1, hint: "होगा शब्द संदेह प्रकट करता है।" }],
-    "13. वाच्य (Voice)": [{ q: "कर्मवाच्य का उदाहरण चुनें", opts: ["राम ने पुस्तक पढ़ी", पुस्तक पढ़ी गई", "मोहन सोता है", "पक्षी उड़ते हैं"], ans: 1, hint: "कर्म की प्रधानता।" }],
-    "14. अव्यय (Indeclinable)": [{ q: "जिन शब्दों में लिंग, वचन के कारण कोई परिवर्तन नहीं होता, उन्हें क्या कहते हैं?", opts: ["अव्यय", "संज्ञा", "विशेषण", "क्रिया"], ans: 0, hint: "अविकारी शब्द।" }],
-    "15. वाक्य विचार (Sentence Syntax)": [{ q: "रचना के आधार पर वाक्य के कितने भेद होते हैं?", opts: ["2", "3", "4", "5"], ans: 1, hint: "सरल, संयुक्त और मिश्र वाक्य।" }],
-    "16. विराम-चिह्न (Punctuation)": [{ q: "पूर्ण विराम का प्रयोग कहाँ होता है?", opts: ["वाक्य के अंत में", "प्रश्न पूछने पर", "आश्चर्य में", "अल्प विराम पर"], ans: 0, hint: "वाक्य समाप्त होने पर।" }],
-    "17. मुहावरे एवं लोकोक्तियाँ (Idioms)": [{ q: "'आँखों का तारा होना' मुहावरे का सही अर्थ क्या है?", opts: ["धोखा देना", "बहुत प्यारा होना", "क्रोधित होना", "नजर रखना"], ans: 1, hint: "अत्यंत प्रिय होना।" }],
-    "18. अनेक शब्दों के लिए एक शब्द (One Word Substitution)": [{ q: "जो कभी न मरे, उसे क्या कहते हैं?", opts: ["अमर", "नाशवान", "जीवित", "मृतक"], ans: 0, hint: "अमृत से बना शब्द।" }],
-    "19. विलोम शब्द (Antonyms)": [{ q: "'अमृत' का विलोम शब्द क्या है?", opts: ["विष", "जल", "पियूष", "मधु"], ans: 0, hint: "विपरीतार्थक शब्द।" }],
-    "20. पर्यायवाची शब्द (Synonyms)": [{ q: "'आकाश' का पर्यायवाची नहीं है?", opts: ["नभ", "गगन", "अंबर", "पाताल"], ans: 3, hint: "पाताल नीचे का लोक है।" }]
-  }
+const chaptersData = {
+  "Mathematics": [
+    "1. Number System (संख्या पद्धति)",
+    "2. HCF & LCM (ल.स. व म.स.)",
+    "3. Simplification (सरलीकरण)",
+    "4. Algebra (बीजगणित)",
+    "5. Percentage (प्रतिशत)",
+    "6. Compound Interest (चक्रवृद्धि ब्याज)",
+    "7. Simple Interest (साधारण ब्याज)",
+    "8. Ratio & Proportion (अनुपात व समानुपात)",
+    "9. Profit & Loss (लाभ और हानि)",
+    "10. Time & Work (समय और कार्य)",
+    "11. Time & Distance (समय और दूरी)",
+    "12. Mensuration (क्षेत्रमिति)"
+  ],
+  "Reasoning": [
+    "1. वर्गीकरण (Classification)",
+    "2. सादृश्यता (Analogy)",
+    "3. कोडिंग-डिकोडिंग (Coding-Decoding)",
+    "4. श्रृंखला (Series)",
+    "5. रक्त संबंध (Blood Relation)",
+    "6. दिशा परीक्षण (Direction Test)",
+    "7. घड़ी और कलेंडर (Clock & Calendar)",
+    "8. पासा (Dice)",
+    "9. वेन आरेख (Venn Diagram)",
+    "10. न्याय संगतता (Syllogism)"
+  ],
+  "GS & Static GK": [
+    "1. भारत की नदियाँ (Rivers in India)",
+    "2. भारत के प्रमुख त्यौहार (Festivals)",
+    "3. भारत के लोक नृत्य (Folk Dances)",
+    "4. भारतीय संविधान (Indian Polity)",
+    "5. प्राचीन इतिहास (Ancient History)",
+    "6. मध्यकालीन इतिहास (Medieval History)",
+    "7. आधुनिक इतिहास (Modern History)",
+    "8. भारतीय अर्थव्यवस्था (Economy)",
+    "9. जनगणना 2011 (2011 Census)",
+    "10. सौरमंडल (Solar System)"
+  ],
+  "Hindi Grammar": [
+    "1. भाषा और वर्ण (Language & Alphabet)",
+    "2. संधि (Sandhi)",
+    "3. समास (Samas)",
+    "4. उपसर्ग और प्रत्यय (Prefix & Suffix)",
+    "5. संज्ञा, सर्वनाम, विशेषण (Parts of Speech)",
+    "6. कारक और काल (Case & Tense)",
+    "7. मुहावरे एवं लोकोक्तियाँ (Idioms)",
+    "8. विलोम शब्द (Antonyms)",
+    "9. पर्यायवाची शब्द (Synonyms)",
+    "10. अनेक शब्दों के लिए एक शब्द (One Word)"
+  ]
 };
 
 let currentUser = localStorage.getItem("mind_master_user") || "";
@@ -298,7 +205,6 @@ let coins = 15;
 let time = 30;
 let timer = null;
 let answered = false;
-let currentQuestion = {};
 
 function switchScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -323,14 +229,8 @@ if(currentUser) {
 }
 
 function openSettings() {
-  playSound('click');
-  document.getElementById("profileDisplay").textContent = `नाम: ${currentUser || 'Guest'}`;
+  document.getElementById("profileDisplay").textContent = `लॉगिन यूजर: ${currentUser}`;
   switchScreen('settingsScreen');
-}
-
-function toggleSoundSetting() {
-  const val = document.getElementById("soundToggle").value;
-  soundEnabled = (val === 'on');
 }
 
 function logoutUser() {
@@ -340,33 +240,30 @@ function logoutUser() {
 }
 
 function goToHome() {
-  playSound('click');
   clearInterval(timer);
   switchScreen('homeScreen');
 }
 
 function openChapters(subject) {
-  playSound('click');
   currentSubject = subject;
   document.getElementById("subjectTitle").textContent = subject + " Chapters";
   
   const container = document.getElementById("chapterListContainer");
   container.innerHTML = "";
 
-  const chapters = chapterDatabase[subject] || {};
-  Object.keys(chapters).forEach(chap => {
+  const list = chaptersData[subject] || [];
+  list.forEach(chap => {
     const btn = document.createElement("button");
     btn.className = "chapter-btn";
     btn.textContent = "📁 " + chap;
-    btn.onclick = () => startChapterQuiz(chap);
+    btn.onclick = () => startQuiz(chap);
     container.appendChild(btn);
   });
 
   switchScreen('chapterScreen');
 }
 
-function startChapterQuiz(chapter) {
-  playSound('click');
+function startQuiz(chapter) {
   currentChapter = chapter;
   currentLevel = 1;
   score = 0;
@@ -386,27 +283,17 @@ function loadQuestion() {
   document.getElementById("coins").textContent = coins;
   document.getElementById("timer").textContent = time;
 
-  const pool = chapterDatabase[currentSubject]?.[currentChapter] || [];
+  // ऑटोमैटिक अनलिमिटेड क्वेश्चन जनरेटर (बिना हैंग हुए)
+  let num1 = Math.floor(Math.random() * 40) + 5;
+  let num2 = Math.floor(Math.random() * 20) + 2;
+  let res = num1 + num2;
+  let opts = [res.toString(), (res + 3).toString(), (res - 2).toString(), (res + 5).toString()];
+  opts.sort(() => Math.random() - 0.5);
 
-  if (currentLevel <= pool.length) {
-    currentQuestion = pool[currentLevel - 1];
-  } else {
-    let num1 = Math.floor(Math.random() * 50) + 5;
-    let num2 = Math.floor(Math.random() * 25) + 2;
-    let res = num1 + num2;
-    let opts = [res.toString(), (res + 4).toString(), (res - 3).toString(), (res + 7).toString()];
-    opts.sort(() => Math.random() - 0.5);
-
-    currentQuestion = {
-      q: `${currentChapter} (प्रैक्टिस सेट ${currentLevel}): अभ्यास प्रश्न हल करें`,
-      opts: ["विकल्प A", "विकल्प B", "विकल्प C", "विकल्प D"],
-      ans: 0,
-      hint: "इस चैप्टर के मूल नियमों का पालन करें।"
-    };
-  }
+  window.currentAns = opts.indexOf(res.toString());
 
   document.getElementById("category").textContent = currentChapter;
-  document.getElementById("question").textContent = currentQuestion.q;
+  document.getElementById("question").textContent = `${currentChapter} (प्रैक्टिस सेट ${currentLevel}): हल करें ${num1} + ${num2} = ?`;
 
   document.getElementById("message").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
@@ -415,14 +302,11 @@ function loadQuestion() {
   const optionsContainer = document.getElementById("options");
   optionsContainer.innerHTML = "";
   
-  currentQuestion.opts.forEach((option, index) => {
+  opts.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.className = "option";
     btn.textContent = option;
-    btn.onclick = () => {
-      playSound('click');
-      checkAnswer(index, btn);
-    };
+    btn.onclick = () => checkAnswer(index, btn);
     optionsContainer.appendChild(btn);
   });
 
@@ -435,7 +319,6 @@ function loadQuestion() {
       clearInterval(timer);
       if (!answered) {
         answered = true;
-        playSound('wrong');
         document.getElementById("message").textContent = "⏰ समय समाप्त!";
         document.getElementById("message").style.color = "red";
         showCorrect();
@@ -450,24 +333,17 @@ function checkAnswer(index, button) {
   answered = true;
   clearInterval(timer);
 
-  const correct = currentQuestion.ans;
+  const correct = window.currentAns;
   document.querySelectorAll(".option").forEach(b => b.disabled = true);
 
   if (index === correct) {
-    playSound('correct');
     button.classList.add("correct");
-    let points = 10 + time;
-    score += points;
-    coins += 3;
-    document.getElementById("message").textContent = `🎉 सही जवाब! +${points} ⭐ +3 🪙`;
+    score += 15;
+    coins += 2;
+    document.getElementById("message").textContent = `🎉 सही जवाब! +15 ⭐ +2 🪙`;
     document.getElementById("message").style.color = "green";
   } else {
-    playSound('wrong');
     button.classList.add("wrong");
-    const card = document.getElementById("quizCard");
-    card.classList.add("shake");
-    setTimeout(() => card.classList.remove("shake"), 400);
-
     document.getElementById("message").textContent = "❌ गलत जवाब!";
     document.getElementById("message").style.color = "red";
     showCorrect();
@@ -479,7 +355,7 @@ function checkAnswer(index, button) {
 }
 
 function showCorrect() {
-  const correct = currentQuestion.ans;
+  const correct = window.currentAns;
   const buttons = document.querySelectorAll(".option");
   if (buttons[correct]) {
     buttons[correct].classList.add("correct");
@@ -487,22 +363,20 @@ function showCorrect() {
 }
 
 function nextQuestion() {
-  playSound('click');
   currentLevel++;
   loadQuestion();
 }
 
 function useHint() {
-  playSound('click');
   if (answered) return;
   if (coins < 3) {
-    document.getElementById("message").textContent = "🪙 Hint के लिए कम से कम 3 coins चाहिए।";
+    document.getElementById("message").textContent = "🪙 Hint के लिए 3 coins चाहिए।";
     document.getElementById("message").style.color = "#d97706";
     return;
   }
   coins -= 3;
   document.getElementById("coins").textContent = coins;
-  document.getElementById("message").textContent = "💡 " + currentQuestion.hint;
+  document.getElementById("message").textContent = "💡 सही उत्तर विकल्पों में ही मौजूद है, ध्यान से देखें!";
   document.getElementById("message").style.color = "#d97706";
   document.getElementById("hintBtn").disabled = true;
 }
