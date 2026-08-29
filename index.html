@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - All Chapters Exam Hub</title>
+<title>Mind Master India - Exam Study Hub</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
@@ -63,7 +63,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <!-- 1. LOGIN SCREEN -->
   <div class="card screen active" id="authScreen">
     <h1>📚 Mind Master India</h1>
-    <div class="subtitle">लॉगिन करें और सभी चैप्टर्स की तैयारी शुरू करें</div>
+    <div class="subtitle">लॉगिन करें और असली प्रश्नों के साथ तैयारी करें</div>
     <div class="form-group">
       <label>पूरा नाम (Full Name)</label>
       <input type="text" id="userNameInput" class="form-control" placeholder="अपना नाम दर्ज करें">
@@ -84,7 +84,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     <div class="subject-grid">
       <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>1. गणित (22 Chapters)</h3></div>
       <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>2. रीजनिंग (22 Chapters)</h3></div>
-      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>3. जीएस / जीके (Full Syllabus)</h3></div>
+      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>3. जीएस / जीके (Syllabus)</h3></div>
       <div class="sub-card" onclick="openChapters('Hindi Grammar')"><span>🇮🇳</span><h3>4. हिंदी व्याकरण (20 Chapters)</h3></div>
     </div>
     
@@ -121,7 +121,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
 
     <div class="info">
-      <span>Level <span id="level">1</span> (Unlimited)</span>
+      <span>Question <span id="level">1</span></span>
       <span>⭐ <span id="score">0</span></span>
       <span>⏱️ <span id="timer">30</span>s</span>
     </div>
@@ -139,107 +139,87 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     <button class="btn btn-secondary" onclick="openChapters(currentSubject)" style="margin-top:12px;">🔙 चैप्टर सूची</button>
   </div>
 
-  <div class="footer">Mind Master India • Full Syllabus Edition</div>
+  <div class="footer">Mind Master India • Subject-Wise Practice Edition</div>
 </div>
 
 <script>
-// आपके द्वारा दिए गए सिलेबस के अनुसार सभी विषयों के पूरे चैप्टर्स
+// सभी विषयों के चैप्टर्स और उनके असली विषय-आधारित प्रश्न बैंक
 const chaptersData = {
-  "Mathematics": [
-    "1. Number System (संख्या पद्धति)",
-    "2. HCF & LCM (ल.स. व म.स.)",
-    "3. Simplification (सरलीकरण)",
-    "4. Algebra (बीजगणित)",
-    "5. Percentage (प्रतिशत)",
-    "6. Compound Interest (चक्रवृद्धि ब्याज)",
-    "7. Simple Interest (साधारण ब्याज)",
-    "8. Ratio & Proportion (अनुपात व समानुपात)",
-    "9. Mixture Alligation (मिश्रण)",
-    "10. Partnership (साझेदारी)",
-    "11. Average (औसत)",
-    "12. Time & Work (समय और कार्य)",
-    "13. Pipe & Cistern (पाइप और टंकी)",
-    "14. Time & Distance (समय और दूरी)",
-    "15. Boat & Stream (नाव और धारा)",
-    "16. Profit & Loss (लाभ और हानि)",
-    "17. Discount (छूट)",
-    "18. Trigonometry (त्रिकोणमिति)",
-    "19. Height & Distance (ऊँचाई और दूरी)",
-    "20. Geometry (ज्यामिति)",
-    "21. Mensuration - 2D (क्षेत्रमिति 2D)",
-    "22. Mensuration - 3D (क्षेत्रमिति 3D)"
-  ],
-  "Reasoning": [
-    "1. वर्गीकरण (Classification)",
-    "2. सादृश्यता (Analogy)",
-    "3. कोडिंग-डिकोडिंग (Coding-Decoding)",
-    "4. शब्दों का तार्किक क्रम (Logical Arrangement)",
-    "5. श्रृंखला (Series)",
-    "6. लुप्त पदों का भरना (Missing Characters)",
-    "7. रक्त संबंध (Blood Relation)",
-    "8. दिशा परीक्षण (Direction Test)",
-    "9. घड़ी और कलेंडर (Clock & Calendar)",
-    "10. पासा (Dice)",
-    "11. बैठक व्यवस्था (Sitting Arrangement)",
-    "12. क्रम व्यवस्था परीक्षण (Ranking Test)",
-    "13. वेन आरेख (Venn Diagram)",
-    "14. गणितीय संक्रियाएँ (Mathematical Operations)",
-    "15. कथन और निष्कर्ष (Statement & Conclusion)",
-    "16. न्याय संगतता (Syllogism)",
-    "17. दर्पण एवं जल प्रतिबिंब (Mirror & Water Images)",
-    "18. कागज मोड़ना व काटना (Paper Folding)",
-    "19. आकृति श्रृंखला (Figure Series)",
-    "20. आकृति पूर्तीकरण (Figure Completion)",
-    "21. सन्निहित आकृतियाँ (Embedded Figures)",
-    "22. ज्यामितीय आकृतियों की गणना (Counting Figures)"
-  ],
-  "GS & Static GK": [
-    "1. भारत की नदियाँ (Rivers in India)",
-    "2. भारत के प्रमुख त्यौहार (Festivals)",
-    "3. भारत के लोक नृत्य (Folk Dances)",
-    "4. वन्य जीव अभ्यारण्य (Wildlife Sanctuary)",
-    "5. भारत के बाँध (Dams in India)",
-    "6. पर्वत और झीलें (Mountains & Lakes)",
-    "7. संविधान सभा व निर्माण (Polity - Constitution)",
-    "8. मौलिक अधिकार व नीति निर्देशक तत्व",
-    "9. राष्ट्रपति और प्रधानमंत्री",
-    "10. प्राचीन इतिहास - सिंधु घाटी सभ्यता",
-    "11. मध्यकालीन इतिहास - सल्तनत काल",
-    "12. आधुनिक इतिहास - 1857 की क्रांति",
-    "13. भारतीय अर्थव्यवस्था (Indian Economy)",
-    "14. पंचवर्षीय योजना (Five Year Plans)",
-    "15. जनगणना 2011 (2011 Census)",
-    "16. सौरमंडल (Solar System)",
-    "17. विज्ञान और तकनीक (Science & Tech)"
-  ],
-  "Hindi Grammar": [
-    "1. भाषा और वर्ण (Language & Alphabet)",
-    "2. ध्वनि एवं वर्तनी (Sound & Spelling)",
-    "3. संधि (Sandhi)",
-    "4. शब्द विचार - तत्सम, तद्भव, पर्यायवाची",
-    "5. उपसर्ग और प्रत्यय (Prefix & Suffix)",
-    "6. समास (Samas)",
-    "7. संज्ञा (Noun)",
-    "8. लिंग और वचन (Gender & Number)",
-    "9. कारक (Case)",
-    "10. सर्वनाम (Pronoun)",
-    "11. विशेषण (Adjective)",
-    "12. क्रिया और काल (Verb & Tense)",
-    "13. वाच्य (Voice)",
-    "14. अव्यय (Indeclinable)",
-    "15. वाक्य विचार (Sentence Syntax)",
-    "16. विराम-चिह्न (Punctuation)",
-    "17. मुहावरे एवं लोकोक्तियाँ (Idioms)",
-    "18. अनेक शब्दों के लिए एक शब्द",
-    "19. विलोम शब्द (Antonyms)",
-    "20. पर्यायवाची शब्द (Synonyms)"
-  ]
+  "Mathematics": {
+    "1. Number System (संख्या पद्धति)": [
+      { q: "सबसे छोटी अभाज्य संख्या कौन सी है?", opts: ["0", "1", "2", "3"], ans: 2, hint: "यह एकमात्र सम अभाज्य संख्या है।" },
+      { q: "प्रथम 5 प्राकृतिक संख्याओं का योग कितना होगा?", opts: ["10", "12", "15", "20"], ans: 0, hint: "1+2+3+4+5 को जोड़ें।" },
+      { q: "कौन सी संख्या 3 से पूर्णतः विभाजित है?", opts: ["122", "123", "124", "125"], ans: 1, hint: "अंकों का योग 3 से विभाजित होना चाहिए।" }
+    ],
+    "2. HCF & LCM (ल.स. व म.स.)": [
+      { q: "12 और 15 का लघुत्तम समापवर्त्य (LCM) क्या होगा?", opts: ["30", "60", "45", "90"], ans: 1, hint: "ऐसी संख्या जो दोनों से विभाजित हो।" },
+      { q: "18 और 24 का महत्तम समापवर्तक (HCF) क्या है?", opts: ["4", "6", "8", "12"], ans: 1, hint: "वह बड़ी से बड़ी संख्या जो दोनों को काटे।" }
+    ],
+    "3. Percentage (प्रतिशत)": [
+      { q: "50 का 20% कितना होगा?", opts: ["5", "10", "15", "20"], ans: 1, hint: "50 × 20 / 100" },
+      { q: "यदि किसी संख्या का 25%, 50 है, तो वह संख्या क्या है?", opts: ["100", "150", "200", "250"], ans: 2, hint: "50 को 100/25 से गुणा करें।" }
+    ],
+    "4. Profit & Loss (लाभ और हानि)": [
+      { q: "यदि क्रय मूल्य 100 और विक्रय 120 है, तो लाभ प्रतिशत क्या है?", opts: ["10%", "20%", "25%", "15%"], ans: 1, hint: "लाभ = 20 रुपये।" },
+      { q: "500 की वस्तु 400 में बेचने पर कितने प्रतिशत हानि होगी?", opts: ["10%", "20%", "25%", "30%"], ans: 1, hint: "हानि 100 रुपये है।" }
+    ]
+  },
+  "Reasoning": {
+    "1. वर्गीकरण (Classification)": [
+      { q: "इनमें से अलग शब्द चुनें: आम, सेब, संतरा, आलू", opts: ["आम", "सेब", "संतरा", "आलू"], ans: 3, hint: "आलू जमीन के अंदर उगता है।" },
+      { q: "अलग संख्या चुनें: 2, 4, 6, 9", opts: ["2", "4", "6", "9"], ans: 3, hint: "बाकी सभी सम संख्याएं हैं, 9 विषम है।" }
+    ],
+    "2. कोडिंग-डिकोडिंग (Coding-Decoding)": [
+      { q: "यदि CAT को 24 लिखा जाए, तो DOG को क्या लिखेंगे?", opts: ["26", "28", "30", "32"], ans: 0, hint: "अक्षरों के क्रम (A=1, B=2...) का योग करें।" },
+      { q: "ACE के बाद अगला क्रम क्या होगा?", opts: ["GIK", "MOQ", "BDF", "HJK"], ans: 0, hint: "एक-एक अक्षर का गैप है।" }
+    ],
+    "3. रक्त संबंध (Blood Relation)": [
+      { q: "पिता की बहन क्या लगती है?", opts: ["मामी", "चाची", "फूफी / बुआ", "मौसी"], ans: 2, hint: "पैटर्नल आंट।" },
+      { q: "माता के भाई की पत्नी क्या लगती है?", opts: ["मामी", "चाची", "मौसी", "दादी"], ans: 0, hint: "मामा की पत्नी।" }
+    ],
+    "4. दिशा परीक्षण (Direction Test)": [
+      { q: "सूरज किस दिशा से उगता है?", opts: ["पश्चिम", "उत्तर", "पूर्व", "दक्षिण"], ans: 2, hint: "East दिशा।" }
+    ]
+  },
+  "GS & Static GK": {
+    "1. भारत की नदियाँ (Rivers in India)": [
+      { q: "भारत की सबसे लंबी नदी कौन सी है?", opts: ["यमुना", "गंगा", "ब्रह्मपुत्र", "गोदावरी"], ans: 1, hint: "यह गंगोत्री से निकलती है।" },
+      { q: "विख्यात 'डल झील' कहाँ स्थित है?", opts: ["उत्तराखंड", "जम्मू और कश्मीर", "हिमाचल प्रदेश", "सिक्किम"], ans: 1, hint: "यह कश्मीर की प्रसिद्ध झील है।" }
+    ],
+    "2. भारतीय संविधान (Indian Polity)": [
+      { q: "भारतीय संविधान का पिता किसे कहा जाता है?", opts: ["महात्मा गांधी", "डॉ. बी.आर. अम्बेडकर", "जवाहरलाल नेहरू", "राजेंद्र प्रसाद"], ans: 1, hint: "इन्होंने प्रारूप समिति का नेतृत्व किया था।" },
+      { q: "भारत का प्रथम नागरिक कौन होता है?", opts: ["प्रधानमंत्री", "राष्ट्रपति", "मुख्य न्यायाधीश", "लोकसभा स्पीकर"], ans: 1, hint: "देश का सर्वोच्च पद।" }
+    ],
+    "3. आधुनिक इतिहास (Modern History)": [
+      { q: "महात्मा गांधी का जन्म कब हुआ था?", opts: ["2 अक्टूबर 1869", "15 अगस्त 1947", "26 जनवरी 1950", "14 नवंबर 1889"], ans: 0, hint: "गांधी जयंती।" },
+      { q: "पानीपत का प्रथम युद्ध कब हुआ था?", opts: ["1526", "1556", "1761", "1192"], ans: 0, hint: "बाबर और इब्राहिम लोदी के बीच।" }
+    ]
+  },
+  "Hindi Grammar": {
+    "1. भाषा और वर्ण (Language & Alphabet)": [
+      { q: "हिंदी वर्णमाला में कुल कितने स्वर हैं?", opts: ["11", "13", "33", "52"], ans: 0, hint: "मुख्य स्वरों की संख्या 11 है।" },
+      { q: "इनमें से कौन सा वर्ण ओष्ठ्य (Labial) है?", opts: ["क", "च", "प", "ट"], ans: 2, hint: "बोलते समय होंठ आपस में मिलते हैं।" }
+    ],
+    "2. संधि (Sandhi)": [
+      { q: "विद्यालय का संधि विच्छेद क्या होगा?", opts: ["विद्या + आलय", "विध + आलय", "विद्या + लय", "विद + यालय"], ans: 0, hint: "दीर्घ स्वर संधि।" },
+      { q: "गणेश का संधि विच्छेद क्या है?", opts: ["गण + ईश", "गणा + ईश", "गणेश + आ", "गन + ईश"], ans: 0, hint: "गुण स्वर संधि।" }
+    ],
+    "3. समास (Samas)": [
+      { q: "गजानन में कौन सा समास है?", opts: ["तत्पुरुष", "बहुब्रीहि", "द्वंद्व", "द्विगु"], ans: 1, hint: "गणेश जी (तीसरा अर्थ निकलता है)।" },
+      { q: "राजकुमार में कौन सा समास है?", opts: ["तत्पुरुष", "कर्मधारय", "अव्ययीभाव", "द्वंद्व"], ans: 0, hint: "राजा का कुमार।" }
+    ],
+    "4. मुहावरे एवं लोकोक्तियाँ (Idioms)": [
+      { q: "'आँखों का तारा होना' मुहावरे का सही अर्थ क्या है?", opts: ["धोखा देना", "बहुत प्यारा होना", "क्रोधित होना", "नजर रखना"], ans: 1, hint: "अत्यंत प्रिय होना।" },
+      { q: "'अंगूठा दिखाना' का अर्थ क्या है?", opts: ["मदद करना", "स्पष्ट मना करना", "चिढ़ाना", "खुश होना"], ans: 1, hint: "ऐन वक्त पर मना कर देना।" }
+    ]
+  }
 };
 
 let currentUser = localStorage.getItem("mind_master_user") || "";
 let currentSubject = "";
 let currentChapter = "";
-let currentLevel = 1;
+let questionList = [];
+let currentQuestionIndex = 0;
 let score = 0;
 let coins = 15;
 let time = 30;
@@ -291,8 +271,8 @@ function openChapters(subject) {
   const container = document.getElementById("chapterListContainer");
   container.innerHTML = "";
 
-  const list = chaptersData[subject] || [];
-  list.forEach(chap => {
+  const chaptersObj = chaptersData[subject] || {};
+  Object.keys(chaptersObj).forEach(chap => {
     const btn = document.createElement("button");
     btn.className = "chapter-btn";
     btn.textContent = "📁 " + chap;
@@ -305,9 +285,10 @@ function openChapters(subject) {
 
 function startQuiz(chapter) {
   currentChapter = chapter;
-  currentLevel = 1;
+  currentQuestionIndex = 0;
   score = 0;
   coins = 15;
+  questionList = chaptersData[currentSubject][chapter] || [];
   document.getElementById("headerTitle").textContent = chapter;
   switchScreen('gameScreen');
   loadQuestion();
@@ -318,21 +299,19 @@ function loadQuestion() {
   answered = false;
   time = 30;
 
-  document.getElementById("level").textContent = currentLevel;
+  if (currentQuestionIndex >= questionList.length) {
+    currentQuestionIndex = 0; // लूप ताकि प्रैक्टिस चलती रहे
+  }
+
+  const qData = questionList[currentQuestionIndex];
+
+  document.getElementById("level").textContent = currentQuestionIndex + 1;
   document.getElementById("score").textContent = score;
   document.getElementById("coins").textContent = coins;
   document.getElementById("timer").textContent = time;
 
-  let num1 = Math.floor(Math.random() * 40) + 5;
-  let num2 = Math.floor(Math.random() * 20) + 2;
-  let res = num1 + num2;
-  let opts = [res.toString(), (res + 3).toString(), (res - 2).toString(), (res + 5).toString()];
-  opts.sort(() => Math.random() - 0.5);
-
-  window.currentAns = opts.indexOf(res.toString());
-
   document.getElementById("category").textContent = currentChapter;
-  document.getElementById("question").textContent = `${currentChapter} (प्रैक्टिस सेट ${currentLevel}): हल करें ${num1} + ${num2} = ?`;
+  document.getElementById("question").textContent = qData.q;
 
   document.getElementById("message").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
@@ -341,15 +320,15 @@ function loadQuestion() {
   const optionsContainer = document.getElementById("options");
   optionsContainer.innerHTML = "";
   
-  opts.forEach((option, index) => {
+  qData.opts.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.className = "option";
     btn.textContent = option;
-    btn.onclick = () => checkAnswer(index, btn);
+    btn.onclick = () => checkAnswer(index, btn, qData.ans);
     optionsContainer.appendChild(btn);
   });
 
-  document.getElementById("progressBar").style.width = ((currentLevel % 10) * 10 || 100) + "%";
+  document.getElementById("progressBar").style.width = (((currentQuestionIndex + 1) % 10) * 10) + "%";
 
   timer = setInterval(() => {
     time--;
@@ -360,22 +339,21 @@ function loadQuestion() {
         answered = true;
         document.getElementById("message").textContent = "⏰ समय समाप्त!";
         document.getElementById("message").style.color = "red";
-        showCorrect();
+        showCorrect(qData.ans);
         document.getElementById("nextBtn").style.display = "block";
       }
     }
   }, 1000);
 }
 
-function checkAnswer(index, button) {
+function checkAnswer(index, button, correctIndex) {
   if (answered) return;
   answered = true;
   clearInterval(timer);
 
-  const correct = window.currentAns;
   document.querySelectorAll(".option").forEach(b => b.disabled = true);
 
-  if (index === correct) {
+  if (index === correctIndex) {
     button.classList.add("correct");
     score += 15;
     coins += 2;
@@ -385,7 +363,7 @@ function checkAnswer(index, button) {
     button.classList.add("wrong");
     document.getElementById("message").textContent = "❌ गलत जवाब!";
     document.getElementById("message").style.color = "red";
-    showCorrect();
+    showCorrect(correctIndex);
   }
 
   document.getElementById("score").textContent = score;
@@ -393,16 +371,15 @@ function checkAnswer(index, button) {
   document.getElementById("nextBtn").style.display = "block";
 }
 
-function showCorrect() {
-  const correct = window.currentAns;
+function showCorrect(correctIndex) {
   const buttons = document.querySelectorAll(".option");
-  if (buttons[correct]) {
-    buttons[correct].classList.add("correct");
+  if (buttons[correctIndex]) {
+    buttons[correctIndex].classList.add("correct");
   }
 }
 
 function nextQuestion() {
-  currentLevel++;
+  currentQuestionIndex++;
   loadQuestion();
 }
 
@@ -415,7 +392,8 @@ function useHint() {
   }
   coins -= 3;
   document.getElementById("coins").textContent = coins;
-  document.getElementById("message").textContent = "💡 सही उत्तर विकल्पों में ही मौजूद है, ध्यान से देखें!";
+  const qData = questionList[currentQuestionIndex];
+  document.getElementById("message").textContent = "💡 हिंट: " + qData.hint;
   document.getElementById("message").style.color = "#d97706";
   document.getElementById("hintBtn").disabled = true;
 }
