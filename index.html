@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - Exam Study Hub</title>
+<title>Mind Master India - All Chapters Exam Hub</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
@@ -63,7 +63,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <!-- 1. LOGIN SCREEN -->
   <div class="card screen active" id="authScreen">
     <h1>📚 Mind Master India</h1>
-    <div class="subtitle">लॉगिन करें और तैयारी शुरू करें</div>
+    <div class="subtitle">लॉगिन करें और सभी चैप्टर्स की तैयारी शुरू करें</div>
     <div class="form-group">
       <label>पूरा नाम (Full Name)</label>
       <input type="text" id="userNameInput" class="form-control" placeholder="अपना नाम दर्ज करें">
@@ -75,17 +75,17 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <div class="card screen" id="homeScreen">
     <div class="top-bar">
       <div>
-        <h1 style="margin:0;font-size:20px;text-align:left;">📚 Study Hub</h1>
+        <h1 style="margin:0;font-size:20px;text-align:left;">📚 Exam Study Hub</h1>
       </div>
       <button class="profile-btn" onclick="openSettings()">⚙️ सेटिंग्स</button>
     </div>
     <div class="subtitle" id="welcomeUser">स्वागत है! विषय चुनें</div>
     
     <div class="subject-grid">
-      <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>गणित (Maths)</h3></div>
-      <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>रीजनिंग</h3></div>
-      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>जीएस / जीके</h3></div>
-      <div class="sub-card" onclick="openChapters('Hindi Grammar')"><span>🇮🇳</span><h3>हिंदी व्याकरण</h3></div>
+      <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>1. गणित (22 Chapters)</h3></div>
+      <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>2. रीजनिंग (22 Chapters)</h3></div>
+      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>3. जीएस / जीके (Full Syllabus)</h3></div>
+      <div class="sub-card" onclick="openChapters('Hindi Grammar')"><span>🇮🇳</span><h3>4. हिंदी व्याकरण (20 Chapters)</h3></div>
     </div>
     
     <div class="ad-banner">📢 Ad Banner Space (Earning Enabled)</div>
@@ -139,10 +139,11 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     <button class="btn btn-secondary" onclick="openChapters(currentSubject)" style="margin-top:12px;">🔙 चैप्टर सूची</button>
   </div>
 
-  <div class="footer">Mind Master India • Exam Edition</div>
+  <div class="footer">Mind Master India • Full Syllabus Edition</div>
 </div>
 
 <script>
+// आपके द्वारा दिए गए सिलेबस के अनुसार सभी विषयों के पूरे चैप्टर्स
 const chaptersData = {
   "Mathematics": [
     "1. Number System (संख्या पद्धति)",
@@ -153,46 +154,85 @@ const chaptersData = {
     "6. Compound Interest (चक्रवृद्धि ब्याज)",
     "7. Simple Interest (साधारण ब्याज)",
     "8. Ratio & Proportion (अनुपात व समानुपात)",
-    "9. Profit & Loss (लाभ और हानि)",
-    "10. Time & Work (समय और कार्य)",
-    "11. Time & Distance (समय और दूरी)",
-    "12. Mensuration (क्षेत्रमिति)"
+    "9. Mixture Alligation (मिश्रण)",
+    "10. Partnership (साझेदारी)",
+    "11. Average (औसत)",
+    "12. Time & Work (समय और कार्य)",
+    "13. Pipe & Cistern (पाइप और टंकी)",
+    "14. Time & Distance (समय और दूरी)",
+    "15. Boat & Stream (नाव और धारा)",
+    "16. Profit & Loss (लाभ और हानि)",
+    "17. Discount (छूट)",
+    "18. Trigonometry (त्रिकोणमिति)",
+    "19. Height & Distance (ऊँचाई और दूरी)",
+    "20. Geometry (ज्यामिति)",
+    "21. Mensuration - 2D (क्षेत्रमिति 2D)",
+    "22. Mensuration - 3D (क्षेत्रमिति 3D)"
   ],
   "Reasoning": [
     "1. वर्गीकरण (Classification)",
     "2. सादृश्यता (Analogy)",
     "3. कोडिंग-डिकोडिंग (Coding-Decoding)",
-    "4. श्रृंखला (Series)",
-    "5. रक्त संबंध (Blood Relation)",
-    "6. दिशा परीक्षण (Direction Test)",
-    "7. घड़ी और कलेंडर (Clock & Calendar)",
-    "8. पासा (Dice)",
-    "9. वेन आरेख (Venn Diagram)",
-    "10. न्याय संगतता (Syllogism)"
+    "4. शब्दों का तार्किक क्रम (Logical Arrangement)",
+    "5. श्रृंखला (Series)",
+    "6. लुप्त पदों का भरना (Missing Characters)",
+    "7. रक्त संबंध (Blood Relation)",
+    "8. दिशा परीक्षण (Direction Test)",
+    "9. घड़ी और कलेंडर (Clock & Calendar)",
+    "10. पासा (Dice)",
+    "11. बैठक व्यवस्था (Sitting Arrangement)",
+    "12. क्रम व्यवस्था परीक्षण (Ranking Test)",
+    "13. वेन आरेख (Venn Diagram)",
+    "14. गणितीय संक्रियाएँ (Mathematical Operations)",
+    "15. कथन और निष्कर्ष (Statement & Conclusion)",
+    "16. न्याय संगतता (Syllogism)",
+    "17. दर्पण एवं जल प्रतिबिंब (Mirror & Water Images)",
+    "18. कागज मोड़ना व काटना (Paper Folding)",
+    "19. आकृति श्रृंखला (Figure Series)",
+    "20. आकृति पूर्तीकरण (Figure Completion)",
+    "21. सन्निहित आकृतियाँ (Embedded Figures)",
+    "22. ज्यामितीय आकृतियों की गणना (Counting Figures)"
   ],
   "GS & Static GK": [
     "1. भारत की नदियाँ (Rivers in India)",
     "2. भारत के प्रमुख त्यौहार (Festivals)",
     "3. भारत के लोक नृत्य (Folk Dances)",
-    "4. भारतीय संविधान (Indian Polity)",
-    "5. प्राचीन इतिहास (Ancient History)",
-    "6. मध्यकालीन इतिहास (Medieval History)",
-    "7. आधुनिक इतिहास (Modern History)",
-    "8. भारतीय अर्थव्यवस्था (Economy)",
-    "9. जनगणना 2011 (2011 Census)",
-    "10. सौरमंडल (Solar System)"
+    "4. वन्य जीव अभ्यारण्य (Wildlife Sanctuary)",
+    "5. भारत के बाँध (Dams in India)",
+    "6. पर्वत और झीलें (Mountains & Lakes)",
+    "7. संविधान सभा व निर्माण (Polity - Constitution)",
+    "8. मौलिक अधिकार व नीति निर्देशक तत्व",
+    "9. राष्ट्रपति और प्रधानमंत्री",
+    "10. प्राचीन इतिहास - सिंधु घाटी सभ्यता",
+    "11. मध्यकालीन इतिहास - सल्तनत काल",
+    "12. आधुनिक इतिहास - 1857 की क्रांति",
+    "13. भारतीय अर्थव्यवस्था (Indian Economy)",
+    "14. पंचवर्षीय योजना (Five Year Plans)",
+    "15. जनगणना 2011 (2011 Census)",
+    "16. सौरमंडल (Solar System)",
+    "17. विज्ञान और तकनीक (Science & Tech)"
   ],
   "Hindi Grammar": [
     "1. भाषा और वर्ण (Language & Alphabet)",
-    "2. संधि (Sandhi)",
-    "3. समास (Samas)",
-    "4. उपसर्ग और प्रत्यय (Prefix & Suffix)",
-    "5. संज्ञा, सर्वनाम, विशेषण (Parts of Speech)",
-    "6. कारक और काल (Case & Tense)",
-    "7. मुहावरे एवं लोकोक्तियाँ (Idioms)",
-    "8. विलोम शब्द (Antonyms)",
-    "9. पर्यायवाची शब्द (Synonyms)",
-    "10. अनेक शब्दों के लिए एक शब्द (One Word)"
+    "2. ध्वनि एवं वर्तनी (Sound & Spelling)",
+    "3. संधि (Sandhi)",
+    "4. शब्द विचार - तत्सम, तद्भव, पर्यायवाची",
+    "5. उपसर्ग और प्रत्यय (Prefix & Suffix)",
+    "6. समास (Samas)",
+    "7. संज्ञा (Noun)",
+    "8. लिंग और वचन (Gender & Number)",
+    "9. कारक (Case)",
+    "10. सर्वनाम (Pronoun)",
+    "11. विशेषण (Adjective)",
+    "12. क्रिया और काल (Verb & Tense)",
+    "13. वाच्य (Voice)",
+    "14. अव्यय (Indeclinable)",
+    "15. वाक्य विचार (Sentence Syntax)",
+    "16. विराम-चिह्न (Punctuation)",
+    "17. मुहावरे एवं लोकोक्तियाँ (Idioms)",
+    "18. अनेक शब्दों के लिए एक शब्द",
+    "19. विलोम शब्द (Antonyms)",
+    "20. पर्यायवाची शब्द (Synonyms)"
   ]
 };
 
@@ -283,7 +323,6 @@ function loadQuestion() {
   document.getElementById("coins").textContent = coins;
   document.getElementById("timer").textContent = time;
 
-  // ऑटोमैटिक अनलिमिटेड क्वेश्चन जनरेटर (बिना हैंग हुए)
   let num1 = Math.floor(Math.random() * 40) + 5;
   let num2 = Math.floor(Math.random() * 20) + 2;
   let res = num1 + num2;
