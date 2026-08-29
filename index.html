@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mind Master India - Complete Study App</title>
+<title>Mind Master India - Complete Exam Study App</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#1e1b4b);color:white;min-height:100vh;display:flex;justify-content:center;align-items:center}
@@ -25,14 +25,14 @@ h1{margin:0 0 5px;font-size:24px;text-align:center;color:#312e81}
 .profile-btn{background:#e0e7ff;color:#3730a3;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;cursor:pointer;border:0}
 
 /* Subject Grid */
-.subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px;max-height:340px;overflow-y:auto;padding-right:4px}
-.sub-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:14px;text-align:center;cursor:pointer;transition:0.2s}
+.subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:15px}
+.sub-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:0.2s}
 .sub-card:active{transform:scale(0.96)}
-.sub-card span{font-size:24px;display:block;margin-bottom:4px}
-.sub-card h3{margin:0;font-size:14px;color:#1e293b}
+.sub-card span{font-size:26px;display:block;margin-bottom:6px}
+.sub-card h3{margin:0;font-size:15px;color:#1e293b}
 
 /* Chapter List */
-.chapter-list{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow-y:auto;margin-bottom:15px;padding-right:4px}
+.chapter-list{display:flex;flex-direction:column;gap:10px;max-height:350px;overflow-y:auto;margin-bottom:15px;padding-right:4px}
 .chapter-btn{background:#f1f5f9;border:1px solid #cbd5e1;padding:12px 15px;border-radius:12px;text-align:left;font-size:14px;font-weight:bold;color:#1e293b;cursor:pointer;transition:0.2s}
 .chapter-btn:hover{background:#e2e8f0}
 
@@ -54,9 +54,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .next{flex:1;padding:12px;border:0;border-radius:12px;background:#4f46e5;color:white;font-weight:bold;cursor:pointer;display:none}
 .message{text-align:center;min-height:22px;margin-top:10px;font-weight:bold;font-size:14px}
 
-/* Ad Space for Earning */
 .ad-banner{background:#1e293b;color:#94a3b8;text-align:center;padding:10px;border-radius:12px;font-size:12px;margin-top:15px;border:1px dashed #475569}
-
 .footer{text-align:center;color:#94a3b8;margin-top:14px;font-size:12px}
 
 .shake { animation: shake 0.4s ease; }
@@ -74,7 +72,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <!-- 1. LOGIN / REGISTER SCREEN -->
   <div class="card screen active" id="authScreen">
     <h1>📚 Mind Master India</h1>
-    <div class="subtitle">पंजीकरण करें और अपनी परीक्षा तैयारी शुरू करें</div>
+    <div class="subtitle">लॉगिन करें और अपनी परीक्षा की तैयारी शुरू करें</div>
     <div class="form-group">
       <label>पूरा नाम (Full Name)</label>
       <input type="text" id="userNameInput" class="form-control" placeholder="अपना नाम दर्ज करें">
@@ -90,21 +88,17 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <div class="card screen" id="homeScreen">
     <div class="top-bar">
       <div>
-        <h1 style="margin:0;font-size:22px;text-align:left;">📚 Study Hub</h1>
+        <h1 style="margin:0;font-size:20px;text-align:left;">📚 Exam Study Hub</h1>
       </div>
       <button class="profile-btn" onclick="openSettings()">⚙️ सेटिंग्स</button>
     </div>
     <div class="subtitle" id="welcomeUser">स्वागत है! विषय चुनें</div>
     
     <div class="subject-grid">
-      <div class="sub-card" onclick="openChapters('GK & GS')"><span>📖</span><h3>सामान्य ज्ञान</h3></div>
-      <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>गणित (Maths)</h3></div>
-      <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>तर्कशक्ति</h3></div>
-      <div class="sub-card" onclick="openChapters('Science')"><span>🔬</span><h3>विज्ञान</h3></div>
-      <div class="sub-card" onclick="openChapters('History')"><span>🏛️</span><h3>इतिहास</h3></div>
-      <div class="sub-card" onclick="openChapters('Geography')"><span>🌍</span><h3>भूगोल</h3></div>
-      <div class="sub-card" onclick="openChapters('English')"><span>🔤</span><h3>अंग्रेजी</h3></div>
-      <div class="sub-card" onclick="openChapters('Computer')"><span>💻</span><h3>कंप्यूटर</h3></div>
+      <div class="sub-card" onclick="openChapters('Mathematics')"><span>📐</span><h3>1. गणित (Maths)</h3></div>
+      <div class="sub-card" onclick="openChapters('Reasoning')"><span>🧠</span><h3>2. रीजनिंग</h3></div>
+      <div class="sub-card" onclick="openChapters('GS & Static GK')"><span>🌍</span><h3>3. जीएस / जीके</h3></div>
+      <div class="sub-card" onclick="openChapters('Hindi Grammar')"><span>🇮🇳</span><h3>4. हिंदी व्याकरण</h3></div>
     </div>
     
     <div class="ad-banner">📢 Ad Banner Space (Google AdMob / Earning Integration)</div>
@@ -113,7 +107,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
   <!-- 3. CHAPTER SELECTION SCREEN -->
   <div class="card screen" id="chapterScreen">
     <h2 id="subjectTitle" style="margin-top:0;color:#312e81;font-size:20px;">Chapters</h2>
-    <div class="subtitle">चैप्टर चुनें और प्रैक्टिस शुरू करें</div>
+    <div class="subtitle">चैप्टर चुनें और प्रैक्टिस सेट हल करें</div>
     <div class="chapter-list" id="chapterListContainer"></div>
     <button class="btn btn-secondary" onclick="goToHome()">🔙 विषय बदलें</button>
   </div>
@@ -136,11 +130,11 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     <button class="btn btn-secondary" onclick="goToHome()">🔙 होम पेज पर जाएं</button>
   </div>
 
-  <!-- 5. QUIZ / STUDY SCREEN -->
+  <!-- 5. QUIZ / PRACTICE SET SCREEN -->
   <div class="screen" id="gameScreen">
     <header>
       <div>
-        <h2 style="margin:0;font-size:15px;color:white;" id="headerTitle">Quiz</h2>
+        <h2 style="margin:0;font-size:14px;color:white;" id="headerTitle">Practice Set</h2>
       </div>
       <div class="coins">🪙 <span id="coins">15</span></div>
     </header>
@@ -150,7 +144,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     </div>
 
     <div class="info">
-      <span>Level <span id="level">1</span> (Unlimited)</span>
+      <span>Practice Level <span id="level">1</span> (Unlimited)</span>
       <span>⭐ <span id="score">0</span></span>
       <span>⏱️ <span id="timer">30</span>s</span>
     </div>
@@ -168,7 +162,7 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
     <button class="btn btn-secondary" onclick="openChapters(currentSubject)" style="margin-top:12px;">🔙 चैप्टर सूची पर जाएं</button>
   </div>
 
-  <div class="footer">Mind Master India • Complete Earning & Study App</div>
+  <div class="footer">Mind Master India • Exam Practice Edition</div>
 </div>
 
 <script>
@@ -203,53 +197,51 @@ function playSound(type) {
   }
 }
 
-// सभी विषयों के सभी मुख्य चैप्टर्स की विस्तृत सूची (Comprehensive Chapters Database)
+// आपके द्वारा दिए गए स्क्रीनशॉट के अनुसार सभी 4 विषयों के चैप्टर्स की पूरी सूची
 const chapterDatabase = {
-  "GK & GS": {
-    "चैप्टर 1: भारतीय राजव्यवस्था (Indian Polity)": [
-      { q: "भारतीय संविधान का पिता किसे कहा जाता है?", opts: ["महात्मा गांधी", "डॉ. बी.आर. अम्बेडकर", "जवाहरलाल नेहरू", "राजेंद्र प्रसाद"], ans: 1, hint: "इन्होंने प्रारूप समिति का नेतृत्व किया था।" }
-    ],
-    "चैप्टर 2: भारत का सामान्य ज्ञान (Basic GK)": [
-      { q: "भारत की राजधानी क्या है?", opts: ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"], ans: 1, hint: "यह उत्तर भारत का मुख्य प्रशासनिक केंद्र है।" }
-    ],
-    "चैप्टर 3: नदियाँ और जलप्रपात (Rivers)": [{ q: "भारत की सबसे लंबी नदी कौन सी है?", opts: ["यमुना", "गंगा", "ब्रह्मपुत्र", "गोदावरी"], ans: 1, hint: "यह गंगोत्री से निकलती है।" }],
-    "चैप्टर 4: राष्ट्रीय पुरस्कार (Awards)": [{ q: "भारत का सर्वोच्च नागरिक सम्मान कौन सा है?", opts: ["पद्म विभूषण", "भारत रत्न", "वीर चक्र", "अर्जुन पुरस्कार"], ans: 1, hint: "देश का सबसे बड़ा सम्मान।" }],
-    "चैप्टर 5: खेल और खिलाड़ी (Sports)": [{ q: "इन्डोर गेम शतरंज का उद्गम कहाँ हुआ था?", opts: ["भारत", "चीन", "अमेरिका", "रूस"], ans: 0, hint: "यह प्राचीन भारत से शुरू हुआ था।" }]
-  },
   "Mathematics": {
-    "चैप्टर 1: प्रतिशतता (Percentage)": [{ q: "15 का 20% कितना होता है?", opts: ["2", "3", "5", "10"], ans: 1, hint: "15 × 20 / 100" }],
-    "चैप्टर 2: लाभ और हानि (Profit & Loss)": [{ q: "यदि क्रय मूल्य 100 और विक्रय 120 है, तो लाभ % क्या है?", opts: ["10%", "20%", "25%", "15%"], ans: 1, hint: "लाभ 20 रुपये है।" }],
-    "चैप्टर 3: संख्या पद्धति (Number System)": [{ q: "सबसे छोटी अभाज्य संख्या कौन सी है?", opts: ["0", "1", "2", "3"], ans: 2, hint: "सम अभाज्य संख्या।" }],
-    "चैप्टर 4: क्षेत्रमिति (Mensuration)": [{ q: "वर्ग की भुजा 5 सेमी है, तो क्षेत्रफल क्या होगा?", opts: ["10", "20", "25", "15"], ans: 2, hint: "भुजा × भुजा" }],
-    "चैप्टर 5: साधारण ब्याज (Simple Interest)": [{ q: "1000 का 10% वार्षिक दर से 1 वर्ष का ब्याज क्या होगा?", opts: ["50", "100", "150", "200"], ans: 1, hint: "मूलधन × दर × समय / 100" }]
+    "1. Number System (संख्या पद्धति)": [{ q: "सबसे छोटी अभाज्य संख्या कौन सी है?", opts: ["0", "1", "2", "3"], ans: 2, hint: "यह एकमात्र सम अभाज्य संख्या है।" }],
+    "2. HCF & LCM (ल.स. व म.स.)": [{ q: "12 और 15 का लघुत्तम समापवर्त्य (LCM) क्या होगा?", opts: ["30", "60", "45", "90"], ans: 1, hint: "ऐसी संख्या जो दोनों से विभाजित हो।" }],
+    "3. Simplification (सरलीकरण)": [{ q: "10 + 10 × 2 = ?", opts: ["40", "30", "20", "25"], ans: 1, hint: "BODMAS नियम का पालन करें।" }],
+    "4. Algebra (बीजगणित)": [{ q: "यदि x + 2 = 5 हो, तो x का मान क्या होगा?", opts: ["2", "3", "4", "5"], ans: 1, hint: "समीकरण को हल करें।" }],
+    "5. Percentage (प्रतिशत)": [{ q: "50 का 20% कितना होगा?", opts: ["5", "10", "15", "20"], ans: 1, hint: "50 × 20 / 100" }],
+    "6. Compound Interest (चक्रवृद्धि ब्याज)": [{ q: "चक्रवृद्धि ब्याज किस पर गणना किया जाता है?", opts: ["केवल मूलधन", "मूलधन और ब्याज दोनों", "केवल ब्याज", "इनमें से कोई नहीं"], ans: 1, hint: "ब्याज पर ब्याज लगता है।" }],
+    "7. Simple Interest (साधारण ब्याज)": [{ q: "1000 का 10% वार्षिक दर से 1 वर्ष का साधारण ब्याज क्या होगा?", opts: ["50", "100", "150", "200"], ans: 1, hint: "मूलधन × दर × समय / 100" }],
+    "8. Ratio & Proportion (अनुपात व समानुपात)": [{ q: "यदि 2:3 :: 4:x हो, तो x का मान क्या होगा?", opts: ["5", "6", "8", "9"], ans: 1, hint: "बाह्य पदों का गुणनफल = मध्य पदों का गुणनफल।" }],
+    "9. Mixture Alligation (मिश्रण)": [{ q: "दो प्रकार के चावल (मूल्य 20 और 30 प्रति kg) को किस अनुपात में मिलाया जाए कि औसत 24 हो?", opts: ["3:2", "2:3", "1:2", "2:1"], ans: 0, hint: "एलिगेशन मेथड लगाएं।" }],
+    "10. Partnership (साझेदारी)": [{ q: "साझेदारी व्यवसाय में लाभ का बँटवारा किस आधार पर होता है?", opts: ["केवल समय", "पूंजी और समय के गुणनफल पर", "केवल पूंजी", "बराबर-बराबर"], ans: 1, hint: "Investment × Time" }],
+    "11. Average (औसत)": [{ q: "प्रथम 5 प्राकृतिक संख्याओं का औसत क्या होगा?", opts: ["2", "3", "4", "5"], ans: 1, hint: "कुल योग / कुल संख्या" }],
+    "12. Time & Work (समय और कार्य)": [{ q: "यदि A किसी काम को 10 दिन में और B उसे 15 दिन में करे, तो दोनों मिलकर कितने दिन में करेंगे?", opts: ["5 दिन", "6 दिन", "8 दिन", "10 दिन"], ans: 1, hint: "LCM मेथड का उपयोग करें।" }],
+    "13. Pipe & Cistern (पाइप और टंकी)": [{ q: "एक नल किसी टंकी को 5 घंटे में भर सकता है, तो 1 घंटे में कितना भरेगा?", opts: ["1/5", "1/2", "1/4", "पूरा"], ans: 0, hint: "प्रति घंटा कार्य निकालें।" }],
+    "14. Time & Distance (समय और दूरी)": [{ q: "यदि चाल 60 किमी/घंटा है, तो 2 घंटे में कितनी दूरी तय होगी?", opts: ["100 किमी", "120 किमी", "140 किमी", "150 किमी"], ans: 1, hint: "दूरी = चाल × समय" }],
+    "15. Boat & Stream (नाव और धारा)": [{ q: "यदि नाव की चाल शांत जल में 10 किमी/घंटा और धारा की चाल 2 किमी/घंटा हो, तो धारा की दिशा में चाल क्या होगी?", opts: ["8 किमी/घंटा", "12 किमी/घंटा", "10 किमी/घंटा", "5 किमी/घंटा"], ans: 1, hint: "धारा की दिशा में चाल जुड़ जाती है।" }],
+    "16. Profit & Loss (लाभ और हानि)": [{ q: "यदि क्रय मूल्य 100 और विक्रय 120 है, तो लाभ % क्या है?", opts: ["10%", "20%", "25%", "15%"], ans: 1, hint: "लाभ 20 रुपये है।" }],
+    "17. Discount (छूट)": [{ q: "यदि अंकित मूल्य 500 है और छूट 10% है, तो विक्रय मूल्य क्या होगा?", opts: ["400", "450", "480", "420"], ans: 1, hint: "500 का 90% निकालें।" }],
+    "18. Trigonometry (त्रिकोणमिति)": [{ q: "sin²θ + cos²θ का मान कितना होता है?", opts: ["0", "1", "2", "अपरिभाषित"], ans: 1, hint: "यह त्रिकोणमिति की सबसे मुख्य सर्वसमिका है।" }],
+    "19. Height & Distance (ऊँचाई और दूरी)": [{ q: "यदि मीनार की ऊँचाई और उसकी छाया बराबर हो, तो सूर्य का उन्नयन कोण कितना होगा?", opts: ["30°", "45°", "60°", "90°"], ans: 1, hint: "tanθ = 1 (लंब = आधार)" }],
+    "20. Geometry (ज्यामिति)": [{ q: "त्रिभुज के तीनों आंतरिक कोणों का योग कितना होता है?", opts: ["90°", "180°", "270°", "360°"], ans: 1, hint: "यह त्रिभुज का मुख्य गुण है।" }],
+    "21. Mensuration - 2D (क्षेत्रमिति 2D)": [{ q: "वर्ग का क्षेत्रफल का सूत्र क्या है?", opts: ["लंबाई × चौड़ाई", "भुजा का वर्ग", "4 × भुजा", "परिमाप / 2"], ans: 1, hint: "Side × Side" }],
+    "22. Mensuration - 3D (क्षेत्रमिति 3D)": [{ q: "गोले का आयतन का सूत्र क्या है?", opts: ["4/3 πr³", "πr²h", "2πr", "6a²"], ans: 0, hint: "Sphere Volume formula" }]
   },
   "Reasoning": {
-    "चैप्टर 1: कोडिंग-डिकोडिंग (Coding)": [{ q: "ACE के बाद अगला क्रम क्या होगा?", opts: ["GIK", "MOQ", "BDF", "HJK"], ans: 0, hint: "एक-एक अक्षर का गैप।" }],
-    "चैप्टर 2: रक्त संबंध (Blood Relations)": [{ q: "पिता की बहन क्या लगती है?", opts: ["मामी", "चाची", "फूफी / बुआ", "मौसी"], ans: 2, hint: "पैटर्नल आंट।" }],
-    "चैप्टर 3: दिशा परीक्षण (Direction)": [{ q: "सूरज किस दिशा से उगता है?", opts: ["पश्चिम", "उत्तर", "पूर्व", "दक्षिण"], ans: 2, hint: "East दिशा।" }],
-    "चैप्टर 4: श्रेणी परीक्षण (Series)": [{ q: "2, 4, 6, 8, ?", opts: ["10", "12", "14", "16"], ans: 0, hint: "+2 जोड़ें।" }]
+    "1. वर्गीकरण (Classification)": [{ q: "इनमें से अलग शब्द चुनें: आम, सेब, संतरा, आलू", opts: ["आम", "सेब", "संतरा", "आलू"], ans: 3, hint: "आलू जमीन के अंदर उगता है (सब्जी है)।" }],
+    "2. सादृश्यता (Analogy)": [{ q: "पुस्तकालय : पुस्तकें :: संग्रहालय : ?", opts: ["इमारत", "कलाकृतियाँ", "लोग", "पुराने सिक्के"], ans: 1, hint: "संग्रहालय में कलाकृतियाँ व ऐतिहासिक वस्तुएं होती हैं।" }],
+    "3. कोडिंग-डिकोडिंग (Coding-Decoding)": [{ q: "यदि CAT को 24 लिखा जाए, तो DOG को क्या लिखेंगे?", opts: ["26", "28", "30", "32"], ans: 0, hint: "अक्षरों के क्रम (A=1, B=2...) का योग करें।" }],
+    "4. रक्त संबंध (Blood Relation)": [{ q: "पिता की बहन क्या लगती है?", opts: ["मामी", "चाची", "फूफी / बुआ", "मौसी"], ans: 2, hint: "पैटर्नल आंट।" }],
+    "5. दिशा परीक्षण (Direction Test)": [{ q: "सूरज किस दिशा से उगता है?", opts: ["पश्चिम", "उत्तर", "पूर्व", "दक्षिण"], ans: 2, hint: "East दिशा।" }],
+    "6. घड़ी और कलेंडर (Clock & Calendar)": [{ q: "साधारण वर्ष में कुल कितने दिन होते हैं?", opts: ["365", "366", "360", "370"], ans: 0, hint: "लीप वर्ष में 366 होते हैं।" }]
   },
-  "Science": {
-    "चैप्टर 1: मानव शरीर (Human Body)": [{ q: "मानव शरीर की सबसे बड़ी हड्डी कौन सी है?", opts: ["फीमर", "रेडियस", "टीबिया", "स्कल"], ans: 0, hint: "जांघ की हड्डी।" }],
-    "चैप्टर 2: विटामिन और पोषण (Vitamins)": [{ q: "विटामिन C की कमी से कौन सा रोग होता है?", opts: ["रिकेट्स", "स्कर्वी", "बेरी-बेरी", "रतौंधी"], ans: 1, hint: "मसूड़ों से जुड़ी बीमारी।" }],
-    "चैप्टर 3: भौतिक राशियाँ (Physics Units)": [{ q: "बल (Force) का मात्रक क्या है?", opts: ["जूल", "न्यूटन", "वाट", "पास्कल"], ans: 1, hint: "'N' से दर्शाते हैं।" }]
+  "GS & Static GK": {
+    "1. भारत की नदियाँ (Rivers in India)": [{ q: "भारत की सबसे लंबी नदी कौन सी है?", opts: ["यमुना", "गंगा", "ब्रह्मपुत्र", "गोदावरी"], ans: 1, hint: "गंगोत्री से उद्गम।" }],
+    "2. भारतीय संविधान (Polity)": [{ q: "भारतीय संविधान का पिता किसे कहते हैं?", opts: ["गांधीजी", "अम्बेडकर जी", "नेहरू जी", "राजेंद्र प्रसाद"], ans: 1, hint: "प्रारूप समिति के अध्यक्ष।" }],
+    "3. आधुनिक इतिहास (Modern History)": [{ q: "महात्मा गांधी का जन्म कब हुआ?", opts: ["2 अक्टूबर 1869", "15 अगस्त 1947", "26 जनवरी 1950", "14 नवंबर"], ans: 0, hint: "गांधी जयंती।" }],
+    "4. भारत के राष्ट्रीय प्रतीक व सामान्य ज्ञान (Static GK)": [{ q: "भारत का राष्ट्रीय खेल कौन सा है?", opts: ["क्रिकेट", "हॉकी", "कबड्डी", "फुटबॉल"], ans: 1, hint: "स्टिक और बॉल का खेल।" }]
   },
-  "History": {
-    "चैप्टer 1: प्राचीन भारत (Ancient History)": [{ q: "बुद्ध का जन्म कहाँ हुआ था?", opts: ["बोधगया", "लुम्बिनी", "सारनाथ", "कुशीनगर"], ans: 1, hint: "नेपाल में स्थित।" }],
-    "चैप्टर 2: मध्यकालीन भारत (Medieval History)": [{ q: "पानीपत का प्रथम युद्ध कब हुआ?", opts: ["1526", "1556", "1761", "1192"], ans: 0, hint: "बाबर और इब्राहिम लोदी।" }],
-    "चैप्टर 3: आधुनिक भारत (Modern History)": [{ q: "महात्मा गांधी का जन्म कब हुआ?", opts: ["2 अक्टूबर 1869", "15 अगस्त 1947", "26 जनवरी 1950", "14 नवंबर"], ans: 0, hint: "गांधी जयंती।" }]
-  },
-  "Geography": {
-    "चैप्टर 1: भारतीय भूगोल (Indian Geo)": [{ q: "क्षेत्रफल की दृष्टि से सबसे बड़ा राज्य कौन सा है?", opts: ["उत्तर प्रदेश", "महाराष्ट्र", "राजस्थान", "मध्य प्रदेश"], ans: 2, hint: "रेगिस्तानी राज्य।" }],
-    "चैप्टर 2: विश्व भूगोल (World Geo)": [{ q: "विश्व की सबसे लंबी नदी कौन सी है?", opts: ["अमेज़न", "नील", "गंगा", "यांग्त्ज़ी"], ans: 1, hint: "अफ्रीका महाद्वीप।" }]
-  },
-  "English": {
-    "चैप्टर 1: Parts of Speech": [{ q: "Which of these is a noun?", opts: ["Run", "Delhi", "Quickly", "Beautiful"], ans: 1, hint: "किसी स्थान का नाम।" }],
-    "चैप्टर 2: Tenses": [{ q: "He ___ to school everyday. (Correct form)", opts: ["go", "goes", "gone", "going"], ans: 1, hint: "Present Simple Tense" }]
-  },
-  "Computer": {
-    "चैप्टर 1: Basic Computer": [{ q: "कंप्यूटर का पिता किसे कहा जाता है?", opts: ["चार्ल्स बेबेज", "बिल गेट्स", "स्टीव जॉब्स", "एलन ट्यूरिंग"], ans: 0, hint: "Father of Computer." }],
-    "चैप्टर 2: Internet & Shortcuts": [{ q: "Ctrl + C का उपयोग किसके लिए होता है?", opts: ["Paste", "Copy", "Cut", "Delete"], ans: 1, hint: "कॉपी करने के लिए।" }]
+  "Hindi Grammar": {
+    "1. भाषा और वर्ण (Language & Alphabet)": [{ q: "हिंदी वर्णमाला में कुल कितने स्वर हैं?", opts: ["11", "13", "33", "52"], ans: 0, hint: "मुख्य स्वरों की संख्या 11 है।" }],
+    "2. संधि (Sandhi)": [{ q: "विद्यालय का संधि विच्छेद क्या होगा?", opts: + ["विद्या + आलय", "विध + आलय", "विद्या + लय", "विद + यालय"], ans: 0, hint: "दीर्घ स्वर संधि।" }],
+    "3. समास (Samas)": [{ q: "गजानन में कौन सा समास है?", opts: ["तत्पुरुष", "बहुब्रीहि", "द्वंद्व", "द्विगु"], ans: 1, hint: "गणेश जी (तीसरा अर्थ निकलता है)।" }],
+    "4. मुहावरे एवं लोकोक्तियाँ (Idioms)": [{ q: "'आँखों का तारा होना' मुहावरे का सही अर्थ क्या है?", opts: ["धोखा देना", "बहुत प्यारा होना", "क्रोधित होना", "नजर रखना"], ans: 1, hint: "अत्यंत प्रिय होना।" }]
   }
 };
 
@@ -269,7 +261,6 @@ function switchScreen(screenId) {
   document.getElementById(screenId).classList.add('active');
 }
 
-// Login & Register Logic
 function handleLogin() {
   const name = document.getElementById("userNameInput").value.trim();
   if(!name) {
@@ -363,7 +354,7 @@ function loadQuestion() {
     opts.sort(() => Math.random() - 0.5);
 
     currentQuestion = {
-      q: `${currentChapter} (अभ्यास ${currentLevel}): हल करें ${num1} + ${num2} = ?`,
+      q: `${currentChapter} (प्रैक्टिस सेट ${currentLevel}): हल करें ${num1} + ${num2} = ?`,
       opts: opts,
       ans: opts.indexOf(res.toString()),
       hint: "इस चैप्टर के मूल नियमों के अनुसार गणना करें।"
