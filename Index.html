@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Master India</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#111827,#312e81);
+  color:white;
+  min-height:100vh;
+}
+
+.container{
+  width:100%;
+  max-width:520px;
+  margin:auto;
+  padding:18px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+h1{
+  margin:0;
+  font-size:25px;
+}
+
+.subtitle{
+  color:#cbd5e1;
+  margin-top:5px;
+}
+
+.coins{
+  background:#facc15;
+  color:#111827;
+  padding:10px 14px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.progress{
+  height:9px;
+  background:#475569;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:12px;
+}
+
+.progress-bar{
+  height:100%;
+  width:5%;
+  background:#22c55e;
+  transition:.3s;
+}
+
+.info{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+  font-weight:bold;
+}
+
+.card{
+  background:white;
+  color:#111827;
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 15px 35px #0006;
+}
+
+.category{
+  display:inline-block;
+  background:#e0e7ff;
+  color:#3730a3;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.question{
+  font-size:22px;
+  line-height:1.4;
+  margin:22px 0;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  padding:15px;
+  border:2px solid #e5e7eb;
+  border-radius:14px;
+  background:#fff;
+  font-size:17px;
+  text-align:left;
+  cursor:pointer;
+}
+
+.option:active{
+  transform:scale(.98);
+}
+
+.correct{
+  background:#dcfce7 !important;
+  border-color:#22c55e !important;
+}
+
+.wrong{
+  background:#fee2e2 !important;
+  border-color:#ef4444 !important;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+button{
+  font-family:inherit;
+}
+
+.hint{
+  flex:1;
+  padding:13px;
+  border:0;
+  border-radius:12px;
+  background:#facc15;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.next{
+  flex:1;
+  padding:13px;
+  border:0;
+  border-radius:12px;
+  background:#4f46e5;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  display:none;
+}
+
+.message{
+  text-align:center;
+  min-height:25px;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.footer{
+  text-align:center;
+  color:#cbd5e1;
+  margin-top:18px;
+  font-size:14px;
+}
+
+#gameOver{
+  display:none;
+  text-align:center;
+}
+
+.restart{
+  margin-top:20px;
+  padding:14px 25px;
+  border:0;
+  border-radius:14px;
+  background:#22c55e;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <div>
+    <h1>🧠 Mind Master India</h1>
+    <div class="subtitle">Brain Puzzle Challenge</div>
+  </div>
+
+  <div class="coins">
+    🪙 <span id="coins">10</span>
+  </div>
+</header>
+
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="info">
+  <span>Level <span id="level">1</span>/20</span>
+  <span>⭐ <span id="score">0</span></span>
+  <span>⏱️ <span id="timer">30</span></span>
+</div>
+
+<div class="card" id="gameCard">
+
+  <div class="category" id="category">
+    Number Puzzle
+  </div>
+
+  <div class="question" id="question">
+    Loading...
+  </div>
+
+  <div class="options" id="options"></div>
+
+  <div class="buttons">
+    <button class="hint" id="hintBtn">
+      💡 Hint (2 🪙)
+    </button>
+
+    <button class="next" id="nextBtn">
+      Next ➜
+    </button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+</div>
+
+<div class="card" id="gameOver">
+
+  <h2>🏆 Game Complete!</h2>
+
+  <p>आपने सभी 20 levels पूरे कर लिए।</p>
+
+  <h2>⭐ Score: <span id="finalScore">0</span></h2>
+
+  <p>🪙 Coins: <span id="finalCoins">0</span></p>
+
+  <button class="restart" onclick="restartGame()">
+    🔄 फिर से खेलें
+  </button>
+
+</div>
+
+<div class="footer">
+  Mind Master India • Brain Training Game
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"2, 4, 8, 16, ?",
+options:["20","24","32","36"],
+answer:2,
+cat:"🔢 Number Puzzle",
+hint:"हर संख्या पिछली संख्या की दोगुनी है।"
+},
+
+{
+q:"3, 6, 11, 18, 27, ?",
+options:["36","38","40","42"],
+answer:1,
+cat:"🔢 Number Puzzle",
+hint:"+3, +5, +7, +9..."
+},
+
+{
+q:"आज सोमवार है। 3 दिन बाद कौन सा दिन होगा?",
+options:["मंगलवार","बुधवार","गुरुवार","शुक्रवार"],
+answer:2,
+cat:"🧠 Logic",
+hint:"सोमवार के बाद 3 दिन गिनें।"
+},
+
+{
+q:"इनमें अलग कौन है?",
+options:["सेब","आम","केला","गाजर"],
+answer:3,
+cat:"👀 Observation",
+hint:"तीन फल हैं।"
+},
+
+{
+q:"5, 10, 20, 40, ?",
+options:["50","60","80","100"],
+answer:2,
+cat:"🔢 Number Puzzle",
+hint:"हर बार ×2।"
+},
+
+{
+q:"10 + 10 ÷ 2 = ?",
+options:["10","15","20","25"],
+answer:1,
+cat:"🧠 Logic",
+hint:"पहले division करें।"
+},
+
+{
+q:"कौन पानी में गिरने पर भी गीली नहीं होती?",
+options:["पत्थर","कागज","परछाई","कपड़ा"],
+answer:2,
+cat:"🤔 Riddle",
+hint:"यह असली वस्तु नहीं है।"
+},
+
+{
+q:"1, 4, 9, 16, ?",
+options:["20","24","25","30"],
+answer:2,
+cat:"🔢 Number Puzzle",
+hint:"1², 2², 3², 4²..."
+},
+
+{
+q:"एक दर्जन में कितनी चीजें होती हैं?",
+options:["10","12","20","24"],
+answer:1,
+cat:"🧠 Logic",
+hint:"दर्जन का मतलब याद करें।"
+},
+
+{
+q:"कौन सा अलग है?",
+options:["लाल","नीला","हरा","वृत्त"],
+answer:3,
+cat:"👀 Observation",
+hint:"तीन रंग हैं।"
+},
+
+{
+q:"7 × 8 = ?",
+options:["54","56","58","64"],
+answer:1,
+cat:"🔢 Maths",
+hint:"7 को 8 बार जोड़ें।"
+},
+
+{
+q:"भारत की राजधानी क्या है?",
+options:["मुंबई","नई दिल्ली","पुणे","नागपुर"],
+answer:1,
+cat:"🇮🇳 India Quiz",
+hint:"भारत का प्रशासनिक केंद्र।"
+},
+
+{
+q:"50 - 25 + 10 = ?",
+options:["25","30","35","40"],
+answer:2,
+cat:"🔢 Maths",
+hint:"बाएँ से दाएँ हल करें।"
+},
+
+{
+q:"एक सप्ताह में कितने दिन होते हैं?",
+options:["5","6","7","8"],
+answer:2,
+cat:"🧠 Logic",
+hint:"Monday से Sunday तक।"
+},
+
+{
+q:"किस चीज की गर्दन होती है लेकिन सिर नहीं?",
+options:["बोतल","कुर्सी","जूता","किताब"],
+answer:0,
+cat:"🤔 Riddle",
+hint:"इसमें पानी भरा जा सकता है।"
+},
+
+{
+q:"100 का आधा + 10 = ?",
+options:["50","60","55","110"],
+answer:1,
+cat:"🔢 Maths",
+hint:"पहले 100 का आधा निकालें।"
+},
+
+{
+q:"कौन उड़ सकता है?",
+options:["शेर","हाथी","चिड़िया","घोड़ा"],
+answer:2,
+cat:"👀 Observation",
+hint:"पंख किसके पास होते हैं?"
+},
+
+{
+q:"20, 18, 16, 14, ?",
+options:["10","11","12","13"],
+answer:2,
+cat:"🔢 Number Puzzle",
+hint:"हर बार 2 कम हो रहा है।"
+},
+
+{
+q:"2 + 3 × 4 = ?",
+options:["20","14","24","10"],
+answer:1,
+cat:"🧠 Logic",
+hint:"पहले गुणा करें।"
+},
+
+{
+q:"कौन सा महीना साल का पहला महीना है?",
+options:["मार्च","जनवरी","अप्रैल","दिसंबर"],
+answer:1,
+cat:"🇮🇳 General Knowledge",
+hint:"नए साल की शुरुआत।"
+}
+
+];
+
+let current=0;
+let score=0;
+let coins=10;
+let time=30;
+let timer=null;
+let answered=false;
+
+const $=id=>document.getElementById(id);
+
+function loadQuestion(){
+
+clearInterval(timer);
+
+answered=false;
+time=30;
+
+$("level").textContent=current+1;
+$("score").textContent=score;
+$("coins").textContent=coins;
+$("timer").textContent=time;
+
+$("category").textContent=questions[current].cat;
+$("question").textContent=questions[current].q;
+
+$("message").textContent="";
+$("nextBtn").style.display="none";
+$("hintBtn").disabled=false;
+
+$("options").innerHTML="";
+
+questions[current].options.forEach((option,index)=>{
+
+const btn=document.createElement("button");
+
+btn.className="option";
+btn.textContent=option;
+
+btn.onclick=()=>checkAnswer(index,btn);
+
+$("options").appendChild(btn);
+
+});
+
+$("progressBar").style.width=
+((current+1)/questions.length*100)+"%";
+
+timer=setInterval(()=>{
+
+time--;
+
+$("timer").textContent=time;
+
+if(time<=0){
+
+clearInterval(timer);
+
+if(!answered){
+
+answered=true;
+
+$("message").textContent="⏰ समय समाप्त!";
+
+$("message").style.color="red";
+
+showCorrect();
+
+$("nextBtn").style.display="block";
+
+}
+
+}
+
+},1000);
+
+}
+
+function checkAnswer(index,button){
+
+if(answered)return;
+
+answered=true;
+
+clearInterval(timer);
+
+const correct=questions[current].answer;
+
+document.querySelectorAll(".option")
+.forEach(b=>b.disabled=true);
+
+if(index===correct){
+
+button.classList.add("correct");
+
+let points=10+time;
+
+score+=points;
+
+coins+=2;
+
+$("message").textContent=
+"🎉 सही जवाब! +"+points+" ⭐  +2 🪙";
+
+$("message").style.color="green";
+
+}else{
+
+button.classList.add("wrong");
+
+$("message").textContent=
+"❌ गलत जवाब!";
+
+$("message").style.color="red";
+
+showCorrect();
+
+}
+
+$("score").textContent=score;
+$("coins").textContent=coins;
+
+$("nextBtn").style.display="block";
+
+}
+
+function showCorrect(){
+
+const correct=questions[current].answer;
+
+const buttons=document.querySelectorAll(".option");
+
+if(buttons[correct]){
+buttons[correct].classList.add("correct");
+}
+
+}
+
+$("nextBtn").onclick=()=>{
+
+current++;
+
+if(current>=questions.length){
+
+endGame();
+
+}else{
+
+loadQuestion();
+
+}
+
+};
+
+$("hintBtn").onclick=()=>{
+
+if(answered)return;
+
+if(coins<2){
+
+$("message").textContent=
+"🪙 Hint के लिए 2 coins चाहिए।";
+
+return;
+
+}
+
+coins-=2;
+
+$("coins").textContent=coins;
+
+$("message").textContent=
+"💡 "+questions[current].hint;
+
+$("message").style.color="#b45309";
+
+$("hintBtn").disabled=true;
+
+};
+
+function endGame(){
+
+clearInterval(timer);
+
+$("gameCard").style.display="none";
+$("gameOver").style.display="block";
+
+$("finalScore").textContent=score;
+$("finalCoins").textContent=coins;
+
+}
+
+function restartGame(){
+
+current=0;
+score=0;
+coins=10;
+
+$("gameCard").style.display="block";
+$("gameOver").style.display="none";
+
+loadQuestion();
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+  </html>
